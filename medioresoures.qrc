@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="project medio">
+    <file>bgb.jpg</file>
+    <file>medio login.png</file>
+  </qresource>
+</RCC>
