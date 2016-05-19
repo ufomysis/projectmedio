@@ -130,8 +130,7 @@ class userclientgui(QMainWindow):
 
         
 class GUIobserver:
-    def __init__(self, **kwargs):        
-             
+    def __init__(self, **kwargs):             
         self.guiuser = userclientgui()
         self.guiuser.show()
     def getuserfield(self):
