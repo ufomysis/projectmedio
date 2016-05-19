@@ -4,7 +4,7 @@ from PySide.QtCore import*
 from PySide.QtGui import*
 from PySide.QtUiTools import*
 
-class Phone_Window(QMainWindow):
+class userclientgui(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self,None)
         self.imagelogo = QPixmap("medio login.png");
@@ -81,12 +81,24 @@ class Phone_Window(QMainWindow):
             button5.setIcon(QIcon("contactandclicktocallbutton.png"));
         else:
             print("wrong username or password");
+  #  def appointment1(self):
+        
+class GUIobserver:
+    def __init__(self, **kwargs):             
+        self.guiuser = userclientgui()
+        self.guiuser.show()
+    def getuserfield(self):
+        inputusername = self.userfield.text();
+        return inputusername
+    def getpassfield(self):
+        inputpassword = self.passfield.text();
+        return inputpassword
 
 def main():
     
     app = QApplication(sys.argv)
-    w = Phone_Window()
-    w.show()
+    observer1 = GUIobserver()
+
     return app.exec_()
 if __name__=="__main__":
     sys.exit(main())
