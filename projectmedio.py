@@ -25,13 +25,13 @@ class userclientgui(QMainWindow):
         self.background = form2.findChild(QLabel,"background");
         acclevel = form2.findChild(QComboBox,"acclevel");
         cslevel = form2.findChild(QLabel,"cslevel");
-        keeplog = form2.findChild(QCheckBox,"keeplog");
+        self.keeplog = form2.findChild(QCheckBox,"keeplog");
         keeplogl = form2.findChild(QLabel,"keeplogl");
         logo = form2.findChild(QLabel,"logo");
         notres = form2.findChild(QLabel,"notres");
         self.passfield = form2.findChild(QLineEdit,"passfield");
         password = form2.findChild(QLabel,"password");
-        remuser = form2.findChild(QCheckBox,"remuserl");
+        self.remuser = form2.findChild(QCheckBox,"remuser");
         remuserl = form2.findChild(QLabel,"remuserl");
         self.userfield = form2.findChild(QLineEdit,"userfield");
         username = form2.findChild(QLabel,"username");
@@ -54,11 +54,14 @@ class userclientgui(QMainWindow):
         self.background.show();       
         button1 = form.findChild(QPushButton,"pushButton");
         button1.setIcon(QIcon("medio login.png"));
-        button1.clicked.connect(self.tologinscreen);
+        button1.clicked.connect(self.tologinscreen);    
     
     def login(self):
         inputusername = self.userfield.text();
         inputpassword = self.passfield.text();
+        self.remuser.isChecked();
+        print(self.remuser.isChecked())
+        print(self.keeplog.isChecked())
         print(inputusername);
         print(inputpassword);
         testuserkey = "Satachan"
@@ -71,6 +74,7 @@ class userclientgui(QMainWindow):
             self.background.setPixmap(self.image);
             button1 = form3.findChild(QPushButton,"appointment");
             button1.setIcon(QIcon("main button.png"));
+            button1.clicked.connect(self.toappointment1); 
             button2 = form3.findChild(QPushButton,"medsche");
             button2.setIcon(QIcon("medicineschedulebutton.png"));
             button3 = form3.findChild(QPushButton,"transac");
@@ -78,21 +82,55 @@ class userclientgui(QMainWindow):
             button4 = form3.findChild(QPushButton,"settings");
             button4.setIcon(QIcon("settingsbutton.png"));
             button5 = form3.findChild(QPushButton,"contact");
-            button5.setIcon(QIcon("contactandclicktocallbutton.png"));
+            button5.setIcon(QIcon("contactandclicktocallbutton.png")); 
         else:
             print("wrong username or password");
-  #  def appointment1(self):
+        
+    def toappointment1(self):
+        form3 = self.loader.load("C:/Users/por_n/Documents/SEP project UI/appointmentscreen.ui",self);
+        self.setCentralWidget(form3);
+        self.background = form3.findChild(QLabel,"background");
+        orth = form3.findChild(QPushButton,"Ortho");
+        gastro = form3.findChild(QPushButton,"GI");  
+        emer = form3.findChild(QPushButton,"ER");
+        dermato = form3.findChild(QPushButton,"Derma");
+        pedia = form3.findChild(QPushButton,"Ped");
+        outpat = form3.findChild(QPushButton,"OPD");
+        cardi = form3.findChild(QPushButton,"Cardio");
+        neurology = form3.findChild(QPushButton,"Neuro");
+        rad = form3.findChild(QPushButton,"Radio");
+        back = form3.findChild(QPushButton,"backtomain");
+        clocknow = form3.findChild(QLCDNumber,"clock");
+        diviv = form3.findChild(QLine,"dividerverti");
+        divih = form3.findChild(QLine,"dividerhori");
+        self.image = QPixmap("bgb.png");
+        self.background.setPixmap(self.image);
+        orth.setIcon(QIcon("orthopedicbutton.png"));
+        gastro.setIcon(QIcon("GIbutton.png"));
+        emer.setIcon(QIcon("ERbutton.png"));
+        dermato.setIcon(QIcon("dermatologybutton.png"));
+        pedia.setIcon(QIcon("pedibutton.png"));
+        outpat.setIcon(QIcon("opdbutton.png"));
+        cardi.setIcon(QIcon("cardiologybutton.png"));
+        neurology.setIcon(QIcon("neurologybutton.png"));
+        rad.setIcon(QIcon("radiologybutton.png"));
+        back.setIcon(QIcon("returnbutton.png"));
         
 class GUIobserver:
-    def __init__(self, **kwargs):             
+    def __init__(self, **kwargs):        
+             
         self.guiuser = userclientgui()
         self.guiuser.show()
     def getuserfield(self):
-        inputusername = self.userfield.text();
+        inputusername = self.guiuser.userfield.text();
         return inputusername
     def getpassfield(self):
-        inputpassword = self.passfield.text();
+        inputpassword = self.guiuser.passfield.text();
         return inputpassword
+    def getkeepusernamestatus(self):
+        return self.guiuser.remuser.isChecked()
+    def getkeeploggedinstatus(self):
+        return self.guiuser.keeplog.isChecked()
 
 def main():
     
