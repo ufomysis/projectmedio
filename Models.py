@@ -17,7 +17,7 @@ class Personnel(Model):
 
         
     @classmethod
-    def create_add_update_user(cls, personnel_ID, name, sector, user_id, user_pass):
+    def add(cls, personnel_ID, name, sector, user_id, user_pass):
         try:            
             cls.create(
                     personnel_ID=personnel_ID,
@@ -34,7 +34,7 @@ class Personnel(Model):
             personnel_tmp.save()
 
     @classmethod
-    def delete_user(cls, user):
+    def delete(cls, user):
         user.delete_instance()
 
 
@@ -51,7 +51,7 @@ class Patient(Model):
 
 
     @classmethod
-    def create_add_update_user(cls, patient_ID, name, date_of_birth, phone_number, age):
+    def add(cls, patient_ID, name, date_of_birth, phone_number, age):
         try:            
             cls.create(
                     patient_ID=patient_ID,
@@ -68,7 +68,7 @@ class Patient(Model):
             patient_tmp.save()
 
     @classmethod
-    def delete_user(cls, user):
+    def delete(cls, user):
         user.delete_instance()
 
 
@@ -83,7 +83,7 @@ class Medicine(Model):
         
 
     @classmethod
-    def create_add_update_medicine(cls, medicine_ID, medicine_name, amount):
+    def add(cls, medicine_ID, medicine_name, amount):
         try:            
             cls.create(
                     medicine_ID=medicine_ID,
@@ -96,14 +96,14 @@ class Medicine(Model):
             medicine_tmp.save()
 
     @classmethod
-    def delete_medicine(cls, medicine):
+    def delete(cls, medicine):
         medicine.delete_instance()
         
 
 class Prescription(Model):
     prescription_ID = CharField(unique=True)
-    medicine_ID = ForeignKeyField(Medicine)
-    personnel_ID = ForeignKeyField(Personnel)    
+    medicine_ID_fk = ForeignKeyField(Medicine)
+    personnel_ID_fk = ForeignKeyField(Personnel)    
     dosage = TextField()
 
 
@@ -112,7 +112,7 @@ class Prescription(Model):
         order_by = ('-prescription_ID',)
         
     @classmethod
-    def create_add_update_prescription(cls, prescription_ID, medicine_ID, personnel_ID, dosage):
+    def add(cls, prescription_ID, medicine_ID, personnel_ID, dosage):
         try:            
             cls.create(
                     prescription_ID=prescription_ID,
@@ -128,16 +128,16 @@ class Prescription(Model):
             
 
     @classmethod
-    def delete_medicine(cls, prescription):
+    def delete(cls, prescription):
         prescription.delete_instance()
     
 
 class Appointment(Model):
     appointment_ID = CharField(unique=True)
     date = DateTimeField(default=datetime.datetime.now)
-    patient_ID = ForeignKeyField(Patient, related_name='appointed')
-    personnel_ID = ForeignKeyField(Personnel, related_name='supervise')    
-    prescription_ID = ForeignKeyField(Prescription)    
+    patient_ID_fk = ForeignKeyField(Patient, related_name='appointed')
+    personnel_ID_fk = ForeignKeyField(Personnel, related_name='supervise')    
+    prescription_ID_fk = ForeignKeyField(Prescription)    
     service_charge = FloatField(default=0)
 
     class Meta:
@@ -145,7 +145,7 @@ class Appointment(Model):
         order_by = ('-date',)
         
     @classmethod
-    def create_add_update_appointment(cls, appointment_ID, date, patient_ID, personnel_ID, prescription_ID, service_charge):
+    def add(cls, appointment_ID, date, patient_ID, personnel_ID, prescription_ID, service_charge):
         try:            
             cls.create(
                     appointment_ID=appointment_ID,
@@ -165,7 +165,7 @@ class Appointment(Model):
             
 
     @classmethod
-    def delete_appointment(cls, appointment):
+    def delete(cls, appointment):
         appointment.delete_instance()
 
 
@@ -178,7 +178,7 @@ class Room(Model):
         order_by = ('-room_num',)
         
     @classmethod
-    def create_add_update_room(cls, room_num, room_type):
+    def add(cls, room_num, room_type):
         try:            
             cls.create(
                     room_num=room_num,
@@ -190,12 +190,12 @@ class Room(Model):
             room_type.save()
             
     @classmethod
-    def delete_room(cls, room):
+    def delete(cls, room):
         room.delete_instance()
 
 class Roomuse(Model):
-    room_num = ForeignKeyField(Room, related_name='used')
-    personnel_ID = ForeignKeyField(Personnel, related_name='uses')
+    room_num_fk = ForeignKeyField(Room, related_name='used')
+    personnel_ID_fk = ForeignKeyField(Personnel, related_name='uses')
     use_time = DateTimeField()
     leave_time = DateTimeField()
 
@@ -220,7 +220,7 @@ class Roomuse(Model):
             roomuse_tmp.save()
             
     @classmethod
-    def delete_roomuse(cls, roomuse):
+    def delete(cls, roomuse):
         roomuse.delete_instance()
 
 '''tweets = Tweet.select(Tweet, User).join(User).order_by(Tweet.create_date.desc())
