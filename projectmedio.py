@@ -116,6 +116,18 @@ class userclientgui(QMainWindow):
         rad.setIcon(QIcon("radiologybutton.png"));
         back.setIcon(QIcon("returnbutton.png"));
         
+        clocknow.setSegmentStyle(QLCDNumber.Filled);
+
+        timer = QTimer();
+        connect(timer, SIGNAL(timeout()), this, SLOT(showTime()));
+        timer.start(1000);
+        time = QTime.currentTime();
+        text = time.toString("hh:mm");
+        if ((time.second() % 2) == 0):
+            text[2] = ' ';
+        showTime();
+
+        
 class GUIobserver:
     def __init__(self, **kwargs):        
              
