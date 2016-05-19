@@ -168,7 +168,7 @@ class userclientgui(QMainWindow):
 
         back.clicked.connect(self.backtomainmenu);         
         cv.clicked.connect(self.tomedscheduleweek);         
-
+        
         self.clocknow  = form4.findChild(QLCDNumber,"clock");
         
         self.timer = QTimer();
@@ -180,7 +180,6 @@ class userclientgui(QMainWindow):
         self.background = form4.findChild(QLabel,"background");
         addmed = form4.findChild(QPushButton,"add");
         dele = form4.findChild(QPushButton,"delmed");
-        sd = form4.findChild(QPushButton,"setday");
         cv = form4.findChild(QPushButton,"changelook");
         cal  = form4.findChild(QCalendarWidget,"calendar");
         back = form4.findChild(QPushButton,"backbutton");
@@ -188,22 +187,21 @@ class userclientgui(QMainWindow):
         self.background.setPixmap(self.image);
         head = form4.findChild(QLabel,"header");
         mon1 = form4.findChild(QLabel,"monday");
-        mon2 = form4.findChild(QListWidget,"mondaylist");
+        self.mon2 = form4.findChild(QListWidget,"mondaylist");
         tue1 = form4.findChild(QLabel,"tuesday");
-        tue2 = form4.findChild(QListWidget,"tuesdaylist");
+        self.tue2 = form4.findChild(QListWidget,"tuesdaylist");
         wed1 = form4.findChild(QLabel,"wednesday");
-        wed2 = form4.findChild(QListWidget,"wednesdaylist");
+        self.wed2 = form4.findChild(QListWidget,"wednesdaylist");
         thur1 = form4.findChild(QLabel,"thursday");
-        thur2 = form4.findChild(QListWidget,"thursdaylist");
+        self.thur2 = form4.findChild(QListWidget,"thursdaylist");
         fri1 = form4.findChild(QLabel,"friday"); 
-        fri2 = form4.findChild(QListWidget,"fridaylist");
+        self.fri2 = form4.findChild(QListWidget,"fridaylist");
         sat1 = form4.findChild(QLabel,"saturday");
-        sat2 = form4.findChild(QListWidget,"saturdaylist");
+        self.sat2 = form4.findChild(QListWidget,"saturdaylist");
         sun1 = form4.findChild(QLabel,"sunday");
-        sun2 = form4.findChild(QListWidget,"sundaylist");
+        self.sun2 = form4.findChild(QListWidget,"sundaylist");
         addmed.setIcon(QIcon("addmedbutton.png"));
         dele.setIcon(QIcon("deletemedicinebutton.png"));
-        sd.setIcon(QIcon("setdatebutton.png"));
         cv.setIcon(QIcon("changeviewbutton.png"));
         back.setIcon(QIcon("returnbutton.png"));
         image1 = QPixmap("medbanner.png");
@@ -222,16 +220,53 @@ class userclientgui(QMainWindow):
         fri1.setPixmap(image6);
         sat1.setPixmap(image7);
         sun1.setPixmap(image8);
-        
+
         back.clicked.connect(self.backtomainmenu); 
         cv.clicked.connect(self.tomedschedulemonth);         
-
+        addmed.clicked.connect(self.popupinsert);
+        dele.clicked.connect(self.removeitemfromlist);
         self.clocknow  = form4.findChild(QLCDNumber,"clock");
-        
+            
         self.timer = QTimer();
         self.timer.timeout.connect(self.showtime)
         self.timer.start(1000);
-        
+    def popupinsert(self):
+        self.dialogloader = QUiLoader();
+        self.dialog = self.dialogloader.load("C:/Users/por_n/Documents/SEP project UI/popupdialogadd.ui",self);
+        self.medbox = self.dialog.findChild(QLineEdit,"mednameedit");
+        self.timebox = self.dialog.findChild(QLineEdit,"dateedit");
+        atl = self.dialog.findChild(QPushButton,"add");
+        cc = self.dialog.findChild(QPushButton,"cancel");
+        labtime = self.dialog.findChild(QLabel,"timelab");
+        labname = self.dialog.findChild(QLabel,"medlab");
+        self.backgroundd = self.dialog.findChild(QLabel,"bgd");
+        self.image2 = QPixmap("bgd.png");
+        self.backgroundd.setPixmap(self.image2);
+            
+        atl.clicked.connect(self.additemtolist);
+        cc.clicked.connect(self.dialog.close);
+            
+        self.dialog.exec();
+    def additemtolist(self):
+        medname = "'killyourself";
+        times = "morning";
+        self.mon2.addItem(self.medbox.text() + " " + self.timebox.text());
+        self.tue2.addItem(self.medbox.text() + " " + self.timebox.text());
+        self.wed2.addItem(self.medbox.text() + " " + self.timebox.text());
+        self.thur2.addItem(self.medbox.text() + " " + self.timebox.text());
+        self.fri2.addItem(self.medbox.text() + " " + self.timebox.text());
+        self.sat2.addItem(self.medbox.text() + " " + self.timebox.text());
+        self.sun2.addItem(self.medbox.text() + " " + self.timebox.text());
+        self.dialog.close();
+    def removeitemfromlist(self):
+        print(self.mon2.count());
+        self.mon2.takeItem(self.mon2.count()-1);
+        self.tue2.takeItem(self.tue2.count()-1);
+        self.wed2.takeItem(self.wed2.count()-1);
+        self.thur2.takeItem(self.thur2.count()-1);
+        self.fri2.takeItem(self.fri2.count()-1);
+        self.sat2.takeItem(self.sat2.count()-1);
+        self.sun2.takeItem(self.sun2.count()-1);    
 class GUIobserver:
     def __init__(self, **kwargs):             
         self.guiuser = userclientgui()
