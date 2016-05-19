@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QPushButton" name="changelook">
+  <widget class="QPushButton" name="setday">
    <property name="geometry">
     <rect>
      <x>310</x>
@@ -23,7 +23,17 @@
     </rect>
    </property>
    <property name="text">
-    <string>delete medicine</string>
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="medioresoures.qrc">
+     <normaloff>:/project medio/addmedbutton.png</normaloff>:/project medio/addmedbutton.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>111</width>
+     <height>61</height>
+    </size>
    </property>
   </widget>
   <widget class="Line" name="lineverti">
@@ -39,7 +49,7 @@
     <enum>Qt::Vertical</enum>
    </property>
   </widget>
-  <widget class="QPushButton" name="setdays">
+  <widget class="QPushButton" name="changelook">
    <property name="geometry">
     <rect>
      <x>600</x>
@@ -49,7 +59,17 @@
     </rect>
    </property>
    <property name="text">
-    <string>change view</string>
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="medioresoures.qrc">
+     <normaloff>:/project medio/setdatebutton.png</normaloff>:/project medio/setdatebutton.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>111</width>
+     <height>51</height>
+    </size>
    </property>
   </widget>
   <widget class="QLabel" name="background">
@@ -84,7 +104,7 @@
     </rect>
    </property>
    <property name="digitCount">
-    <number>4</number>
+    <number>5</number>
    </property>
    <property name="value" stdset="0">
     <double>0.000000000000000</double>
@@ -113,7 +133,17 @@
     </rect>
    </property>
    <property name="text">
-    <string>Add medicine</string>
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="medioresoures.qrc">
+     <normaloff>:/project medio/deletemedicinebutton.png</normaloff>:/project medio/deletemedicinebutton.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>111</width>
+     <height>51</height>
+    </size>
    </property>
   </widget>
   <widget class="QPushButton" name="backbutton">
@@ -139,7 +169,7 @@
     </size>
    </property>
   </widget>
-  <widget class="QPushButton" name="delete_2">
+  <widget class="QPushButton" name="delmed">
    <property name="geometry">
     <rect>
      <x>750</x>
@@ -149,7 +179,17 @@
     </rect>
    </property>
    <property name="text">
-    <string>add duration</string>
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="medioresoures.qrc">
+     <normaloff>:/project medio/changeviewbutton.png</normaloff>:/project medio/changeviewbutton.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>111</width>
+     <height>51</height>
+    </size>
    </property>
   </widget>
   <widget class="QScrollArea" name="scrollArea">
@@ -184,25 +224,25 @@
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="4">
-       <widget class="QListWidget" name="listWidget_3"/>
+       <widget class="QListWidget" name="fridaylist"/>
       </item>
       <item row="0" column="3">
-       <widget class="QListWidget" name="listWidget_4"/>
+       <widget class="QListWidget" name="thursdaylist"/>
       </item>
       <item row="0" column="2">
-       <widget class="QListWidget" name="listWidget_5"/>
+       <widget class="QListWidget" name="wednesdaylist"/>
       </item>
       <item row="0" column="1">
-       <widget class="QListWidget" name="listWidget_6"/>
+       <widget class="QListWidget" name="tuesdaylist"/>
       </item>
       <item row="0" column="6">
-       <widget class="QListWidget" name="listWidget"/>
+       <widget class="QListWidget" name="sundaylist"/>
       </item>
       <item row="0" column="5">
-       <widget class="QListWidget" name="listWidget_2"/>
+       <widget class="QListWidget" name="saturdaylist"/>
       </item>
       <item row="0" column="0">
-       <widget class="QListWidget" name="listWidget_7"/>
+       <widget class="QListWidget" name="mondaylist"/>
       </item>
      </layout>
     </widget>
@@ -217,9 +257,9 @@
      <height>80</height>
     </rect>
    </property>
-   <layout class="QGridLayout" name="gridLayout_2">
+   <layout class="QGridLayout" name="tableheadergrid">
     <item row="0" column="3">
-     <widget class="QLabel" name="label_4">
+     <widget class="QLabel" name="thursday">
       <property name="text">
        <string/>
       </property>
@@ -229,7 +269,7 @@
      </widget>
     </item>
     <item row="0" column="4">
-     <widget class="QLabel" name="label_3">
+     <widget class="QLabel" name="friday">
       <property name="text">
        <string/>
       </property>
@@ -239,7 +279,7 @@
      </widget>
     </item>
     <item row="0" column="6">
-     <widget class="QLabel" name="label">
+     <widget class="QLabel" name="sunday">
       <property name="text">
        <string/>
       </property>
@@ -249,7 +289,7 @@
      </widget>
     </item>
     <item row="0" column="2">
-     <widget class="QLabel" name="label_5">
+     <widget class="QLabel" name="wednesday">
       <property name="text">
        <string/>
       </property>
@@ -259,7 +299,7 @@
      </widget>
     </item>
     <item row="0" column="1">
-     <widget class="QLabel" name="label_6">
+     <widget class="QLabel" name="tuesday">
       <property name="text">
        <string/>
       </property>
@@ -269,7 +309,7 @@
      </widget>
     </item>
     <item row="0" column="0">
-     <widget class="QLabel" name="label_7">
+     <widget class="QLabel" name="monday">
       <property name="text">
        <string/>
       </property>
@@ -279,7 +319,7 @@
      </widget>
     </item>
     <item row="0" column="5">
-     <widget class="QLabel" name="label_2">
+     <widget class="QLabel" name="saturday">
       <property name="text">
        <string/>
       </property>
@@ -290,7 +330,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QLabel" name="label_8">
+  <widget class="QLabel" name="header">
    <property name="geometry">
     <rect>
      <x>180</x>
@@ -310,17 +350,17 @@
    </property>
   </widget>
   <zorder>background</zorder>
-  <zorder>changelook</zorder>
+  <zorder>setday</zorder>
   <zorder>lineverti</zorder>
-  <zorder>setdays</zorder>
+  <zorder>changelook</zorder>
   <zorder>clock</zorder>
   <zorder>linehori</zorder>
   <zorder>add</zorder>
   <zorder>backbutton</zorder>
-  <zorder>delete_2</zorder>
+  <zorder>delmed</zorder>
   <zorder>scrollArea</zorder>
   <zorder>gridLayoutWidget_2</zorder>
-  <zorder>label_8</zorder>
+  <zorder>header</zorder>
  </widget>
  <resources>
   <include location="medioresoures.qrc"/>
