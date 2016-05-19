@@ -64,8 +64,8 @@ class userclientgui(QMainWindow):
         print(self.keeplog.isChecked())
         print(inputusername);
         print(inputpassword);
-        testuserkey = "Satachan"
-        testpasskey = "Yaoifanboy"
+        testuserkey = ""
+        testpasskey = ""
         if(inputusername == testuserkey and inputpassword == testpasskey):
             form3 = self.loader.load("C:/Users/por_n/Documents/SEP project UI/mainmenu.ui",self);
             self.setCentralWidget(form3);
@@ -100,7 +100,7 @@ class userclientgui(QMainWindow):
         neurology = form3.findChild(QPushButton,"Neuro");
         rad = form3.findChild(QPushButton,"Radio");
         back = form3.findChild(QPushButton,"backtomain");
-        clocknow = form3.findChild(QLCDNumber,"clock");
+        self.clocknow = form3.findChild(QLCDNumber,"clock");
         diviv = form3.findChild(QLine,"dividerverti");
         divih = form3.findChild(QLine,"dividerhori");
         self.image = QPixmap("bgb.png");
@@ -115,17 +115,18 @@ class userclientgui(QMainWindow):
         neurology.setIcon(QIcon("neurologybutton.png"));
         rad.setIcon(QIcon("radiologybutton.png"));
         back.setIcon(QIcon("returnbutton.png"));
-        
-        clocknow.setSegmentStyle(QLCDNumber.Filled);
+            
+        self.clocknow.setSegmentStyle(QLCDNumber.Filled);
 
-        timer = QTimer();
-        connect(timer, SIGNAL(timeout()), this, SLOT(showTime()));
-        timer.start(1000);
-        time = QTime.currentTime();
-        text = time.toString("hh:mm");
-        if ((time.second() % 2) == 0):
-            text[2] = ' ';
-        showTime();
+        self.timer = QTimer();
+        self.timer.timeout.connect(self.showtime)
+        self.timer.start(1000);
+    def showtime(self):
+        self.time = QTime.currentTime();
+        self.text = self.time.toString("hh:mm");
+        self.clocknow.display(self.text);
+
+    
 
         
 class GUIobserver:
