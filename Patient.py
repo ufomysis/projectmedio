@@ -1,5 +1,6 @@
 import ApptClass as appt 
 import time
+import Models
 from datetime import date
 class Patient:
     def __init__(self):
@@ -48,4 +49,8 @@ class Patient:
         return self.age
     def getApptList(self):
         return self.appt
+        
+    def del_table(self):
+        user_tmp = Models.Patient.select().where(Models.Patient.patient_ID == self.Id)
+        Models.Patient.delete_user(user_tmp)
 
