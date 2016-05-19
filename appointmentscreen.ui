@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="Line" name="line">
+  <widget class="Line" name="dividerverti">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -26,7 +26,7 @@
     <enum>Qt::Vertical</enum>
    </property>
   </widget>
-  <widget class="Line" name="line_2">
+  <widget class="Line" name="dividerhori">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -39,7 +39,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QLCDNumber" name="lcdNumber">
+  <widget class="QLCDNumber" name="clock">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -49,7 +49,7 @@
     </rect>
    </property>
    <property name="digitCount">
-    <number>4</number>
+    <number>5</number>
    </property>
    <property name="value" stdset="0">
     <double>0.000000000000000</double>
@@ -69,7 +69,7 @@
      <enum>QLayout::SetNoConstraint</enum>
     </property>
     <item row="0" column="0">
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QPushButton" name="Ortho">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
         <horstretch>0</horstretch>
@@ -83,12 +83,25 @@
        </size>
       </property>
       <property name="text">
-       <string>PushButton</string>
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="medioresoures.qrc">
+        <normaloff>:/project medio/orthopedicbutton.png</normaloff>:/project medio/orthopedicbutton.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>256</width>
+        <height>156</height>
+       </size>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
     <item row="1" column="0">
-     <widget class="QPushButton" name="pushButton_4">
+     <widget class="QPushButton" name="Derma">
       <property name="minimumSize">
        <size>
         <width>256</width>
@@ -96,12 +109,25 @@
        </size>
       </property>
       <property name="text">
-       <string>PushButton</string>
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="medioresoures.qrc">
+        <normaloff>:/project medio/dermatologybutton.png</normaloff>:/project medio/dermatologybutton.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>256</width>
+        <height>156</height>
+       </size>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
     <item row="1" column="1">
-     <widget class="QPushButton" name="pushButton_5">
+     <widget class="QPushButton" name="Ped">
       <property name="minimumSize">
        <size>
         <width>156</width>
@@ -109,12 +135,25 @@
        </size>
       </property>
       <property name="text">
-       <string>PushButton</string>
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="medioresoures.qrc">
+        <normaloff>:/project medio/pedibutton.png</normaloff>:/project medio/pedibutton.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>256</width>
+        <height>156</height>
+       </size>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
     <item row="1" column="2">
-     <widget class="QPushButton" name="pushButton_6">
+     <widget class="QPushButton" name="OPD">
       <property name="minimumSize">
        <size>
         <width>156</width>
@@ -122,12 +161,25 @@
        </size>
       </property>
       <property name="text">
-       <string>PushButton</string>
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="medioresoures.qrc">
+        <normaloff>:/project medio/opdbutton.png</normaloff>:/project medio/opdbutton.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>256</width>
+        <height>156</height>
+       </size>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
     <item row="0" column="1">
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="GI">
       <property name="minimumSize">
        <size>
         <width>156</width>
@@ -135,12 +187,25 @@
        </size>
       </property>
       <property name="text">
-       <string>PushButton</string>
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="medioresoures.qrc">
+        <normaloff>:/project medio/GIbutton.png</normaloff>:/project medio/GIbutton.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>256</width>
+        <height>156</height>
+       </size>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
     <item row="0" column="2">
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="ER">
       <property name="minimumSize">
        <size>
         <width>156</width>
@@ -148,12 +213,25 @@
        </size>
       </property>
       <property name="text">
-       <string>PushButton</string>
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="medioresoures.qrc">
+        <normaloff>:/project medio/ERbutton.png</normaloff>:/project medio/ERbutton.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>256</width>
+        <height>156</height>
+       </size>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
     <item row="2" column="0">
-     <widget class="QPushButton" name="pushButton_7">
+     <widget class="QPushButton" name="Cardio">
       <property name="minimumSize">
        <size>
         <width>156</width>
@@ -161,12 +239,25 @@
        </size>
       </property>
       <property name="text">
-       <string>PushButton</string>
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="medioresoures.qrc">
+        <normaloff>:/project medio/cardiologybutton.png</normaloff>:/project medio/cardiologybutton.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>256</width>
+        <height>156</height>
+       </size>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
     <item row="2" column="1">
-     <widget class="QPushButton" name="pushButton_8">
+     <widget class="QPushButton" name="Neuro">
       <property name="minimumSize">
        <size>
         <width>156</width>
@@ -174,12 +265,25 @@
        </size>
       </property>
       <property name="text">
-       <string>PushButton</string>
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="medioresoures.qrc">
+        <normaloff>:/project medio/neurologybutton.png</normaloff>:/project medio/neurologybutton.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>256</width>
+        <height>156</height>
+       </size>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
     <item row="2" column="2">
-     <widget class="QPushButton" name="pushButton_9">
+     <widget class="QPushButton" name="Radio">
       <property name="minimumSize">
        <size>
         <width>156</width>
@@ -187,13 +291,26 @@
        </size>
       </property>
       <property name="text">
-       <string>PushButton</string>
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="medioresoures.qrc">
+        <normaloff>:/project medio/radiologybutton.png</normaloff>:/project medio/radiologybutton.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>256</width>
+        <height>156</height>
+       </size>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
    </layout>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="userpic">
    <property name="geometry">
     <rect>
      <x>280</x>
@@ -206,7 +323,7 @@
     <string>TextLabel</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="userdesc">
    <property name="geometry">
     <rect>
      <x>470</x>
@@ -219,7 +336,7 @@
     <string>TextLabel</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_10">
+  <widget class="QPushButton" name="backtomain">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -229,10 +346,52 @@
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="medioresoures.qrc">
+     <normaloff>:/project medio/returnbutton.png</normaloff>:/project medio/returnbutton.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>181</width>
+     <height>631</height>
+    </size>
    </property>
   </widget>
+  <widget class="QLabel" name="background">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>961</width>
+     <height>801</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>../../Downloads/bgb.jpg</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <zorder>background</zorder>
+  <zorder>dividerverti</zorder>
+  <zorder>dividerhori</zorder>
+  <zorder>clock</zorder>
+  <zorder>gridLayoutWidget</zorder>
+  <zorder>userpic</zorder>
+  <zorder>userdesc</zorder>
+  <zorder>backtomain</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="medioresoures.qrc"/>
+ </resources>
  <connections/>
 </ui>

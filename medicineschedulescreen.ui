@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLCDNumber" name="lcdNumber">
+  <widget class="QLCDNumber" name="clock">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -29,7 +29,7 @@
     <double>0.000000000000000</double>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_10">
+  <widget class="QPushButton" name="backbutton">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -39,10 +39,20 @@
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="medioresoures.qrc">
+     <normaloff>:/project medio/returnbutton.png</normaloff>:/project medio/returnbutton.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>181</width>
+     <height>631</height>
+    </size>
    </property>
   </widget>
-  <widget class="Line" name="line">
+  <widget class="Line" name="lineverti">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -55,7 +65,7 @@
     <enum>Qt::Vertical</enum>
    </property>
   </widget>
-  <widget class="Line" name="line_2">
+  <widget class="Line" name="linehori">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -68,7 +78,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="profpic">
    <property name="geometry">
     <rect>
      <x>280</x>
@@ -78,23 +88,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string/>
    </property>
   </widget>
-  <widget class="Line" name="line_3">
-   <property name="geometry">
-    <rect>
-     <x>170</x>
-     <y>10</y>
-     <width>21</width>
-     <height>791</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Vertical</enum>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="userdesc">
    <property name="geometry">
     <rect>
      <x>470</x>
@@ -104,10 +101,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string/>
    </property>
   </widget>
-  <widget class="QCalendarWidget" name="calendarWidget">
+  <widget class="QCalendarWidget" name="calendar">
    <property name="geometry">
     <rect>
      <x>180</x>
@@ -117,56 +114,96 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="add">
    <property name="geometry">
     <rect>
-     <x>350</x>
-     <y>690</y>
-     <width>75</width>
-     <height>23</height>
+     <x>270</x>
+     <y>680</y>
+     <width>111</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="medioresoures.qrc">
+     <normaloff>:/project medio/addmedbutton.png</normaloff>:/project medio/addmedbutton.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>111</width>
+     <height>51</height>
+    </size>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="delmed">
    <property name="geometry">
     <rect>
-     <x>490</x>
-     <y>690</y>
-     <width>75</width>
-     <height>23</height>
+     <x>450</x>
+     <y>680</y>
+     <width>111</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="medioresoures.qrc">
+     <normaloff>:/project medio/deletemedicinebutton.png</normaloff>:/project medio/deletemedicinebutton.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>111</width>
+     <height>51</height>
+    </size>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_3">
+  <widget class="QPushButton" name="setday">
    <property name="geometry">
     <rect>
-     <x>630</x>
-     <y>690</y>
-     <width>75</width>
-     <height>23</height>
+     <x>620</x>
+     <y>680</y>
+     <width>111</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="medioresoures.qrc">
+     <normaloff>:/project medio/setdatebutton.png</normaloff>:/project medio/setdatebutton.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>111</width>
+     <height>51</height>
+    </size>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_4">
+  <widget class="QPushButton" name="changelook">
    <property name="geometry">
     <rect>
-     <x>740</x>
-     <y>690</y>
-     <width>75</width>
-     <height>23</height>
+     <x>780</x>
+     <y>680</y>
+     <width>111</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="medioresoures.qrc">
+     <normaloff>:/project medio/changeviewbutton.png</normaloff>:/project medio/changeviewbutton.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>111</width>
+     <height>51</height>
+    </size>
    </property>
   </widget>
   <widget class="QLabel" name="background">
@@ -192,19 +229,20 @@
    </property>
   </widget>
   <zorder>background</zorder>
-  <zorder>lcdNumber</zorder>
-  <zorder>pushButton_10</zorder>
-  <zorder>line</zorder>
-  <zorder>line_2</zorder>
-  <zorder>label</zorder>
-  <zorder>line_3</zorder>
-  <zorder>label_2</zorder>
-  <zorder>calendarWidget</zorder>
-  <zorder>pushButton</zorder>
-  <zorder>pushButton_2</zorder>
-  <zorder>pushButton_3</zorder>
-  <zorder>pushButton_4</zorder>
+  <zorder>clock</zorder>
+  <zorder>backbutton</zorder>
+  <zorder>lineverti</zorder>
+  <zorder>linehori</zorder>
+  <zorder>profpic</zorder>
+  <zorder>userdesc</zorder>
+  <zorder>calendar</zorder>
+  <zorder>add</zorder>
+  <zorder>delmed</zorder>
+  <zorder>setday</zorder>
+  <zorder>changelook</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="medioresoures.qrc"/>
+ </resources>
  <connections/>
 </ui>
