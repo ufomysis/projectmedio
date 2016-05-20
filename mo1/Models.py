@@ -234,8 +234,8 @@ class Reqdetail(Model):
 
 
 class Prescribe(Model):
-    appointment_ID_fk = ForeignKeyField(Appointment, related_name='requests')
-    medicine_ID_fk = ForeignKeyField(Medicine, related_name='is requested by')
+    appointment_ID_fk = ForeignKeyField(Appointment, related_name='prescribes')
+    medicine_ID_fk = ForeignKeyField(Medicine, related_name='is prescribed by')
     date = DateTimeField(default=datetime.datetime.now)
     is_completed = BooleanField(default = False) 
 
@@ -276,7 +276,7 @@ class Medpercase(Model):
         order_by = ('-date',)
 
     @classmethod
-    def add(cls, appointment_ID_fk, medicine_ID_fk, dosage, date, is_completed):
+    def add(cls, appointment_ID_fk, medicine_ID_fk, dosage, date, is_completed = False):
         try:            
             cls.create(
                     appointment_ID_fk=appointment_ID_fk,
