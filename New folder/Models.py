@@ -76,6 +76,7 @@ class Medicine(Model):
     medicine_ID =CharField()
     medicine_name = TextField()
     amount = IntegerField()
+    price = FloatField()
 
     class Meta:
         database = DATABASE
@@ -116,13 +117,13 @@ class Prescription(Model):
         try:            
             cls.create(
                     prescription_ID=prescription_ID,
-                    medicine_ID=medicine_ID,
+                    medicine_ID_fk=medicine_ID_fk,
                     personnel_ID=personnel_ID,
                     dosage=dosage)            
         except IntegrityError:
             pres_tmp = Prescription.get(prescription_ID = prescription_ID)
-            pres_tmp.medicine_ID = medicine_ID
-            pres_tmp.personnel_ID = personnel_ID
+            pres_tmp.medicine_ID_fk = medicine_ID_fk
+            pres_tmp.personnel_ID_fk = personnel_ID_fk
             pres_tmp.dosage = dosage
             pres_tmp.save()
             
@@ -139,27 +140,29 @@ class Appointment(Model):
     personnel_ID_fk = ForeignKeyField(Personnel, related_name='supervise')    
     prescription_ID_fk = ForeignKeyField(Prescription)    
     service_charge = FloatField(default=0)
+    lab_result = TextField()
 
     class Meta:
         database = DATABASE
         order_by = ('-date',)
         
     @classmethod
-    def add(cls, appointment_ID, date, patient_ID, personnel_ID, prescription_ID, service_charge):
+    def add(cls, appointment_ID, date, patient_ID, personnel_ID, prescription_ID, service_charge, lab_result):
         try:            
             cls.create(
                     appointment_ID=appointment_ID,
                     date=date,
-                    patient_ID=patient_ID,
-                    personnel_ID=personnel_ID,
-                    prescription_ID=prescription_ID,
-                    service_charge=service_charge)            
+                    patient_ID_fk=patient_ID_fk,
+                    personnel_ID_fk=personnel_ID_fk,
+                    prescription_ID_fk=prescription_ID_fk,
+                    service_charge=service_charge,
+                    lab_result=lab_result)            
         except IntegrityError:
             app_tmp = Appointment.get(appointment_ID = appointment_ID)
             app_tmp.date = date
-            app_tmp.patient_ID = patient_ID
-            app_tmp.personnel_ID = personnel_ID
-            app_tmp.prescription_ID = prescription_ID
+            app_tmp.patient_ID_fk = patient_ID_fk
+            app_tmp.personnel_ID_fk = personnel_ID_fk
+            app_tmp.prescription_ID_fk = prescription_ID_fk
             app_tmp.service_charge = service_charge
             app_tmp.save()
             
@@ -201,19 +204,19 @@ class Roomuse(Model):
 
     class Meta:
         database = DATABASE
-        order_by = ('-room_num',)
+        order_by = ('-room_num_fk',)
         
     @classmethod
-    def create_add_update_roomuse(cls, room_num, personnel_ID, use_time, leave_time):
+    def add(cls, room_num_fk, personnel_ID, use_time, leave_time):
         try:            
             cls.create(
-                    room_num=room_num,
+                    room_num_fk=room_num_fk,
                     personnel_ID=personnel_ID,
                     use_time=use_time,
                     leave_time=leave_time)
             
         except IntegrityError:
-            roomuse_tmp = Roomuse.get(room_num = room_num)
+            roomuse_tmp = Roomuse.get(room_num_fk = room_num_fk)
             roomuse_tmp.personnel_ID = personnel_ID
             roomuse_tmp.use_time = use_time
             roomuse_tmp.leave_time = leave_time   
@@ -227,7 +230,10 @@ class Roomuse(Model):
 for tweet in tweets:
     print(tweet.user.username, tweet.message)'''
 
-
+def initialize():
+    DATABASE.connect()
+    DATABASE.create_tables([Personnel,Patient,Medicine,Prescription,Appointment,Room, Roomuse], safe=True)
+    DATABASE.close()
     
     
     
