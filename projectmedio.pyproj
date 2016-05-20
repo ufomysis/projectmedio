@@ -22,7 +22,21 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="add.py" />
+    <Compile Include="Appointment.py" />
+    <Compile Include="ApptClass.py" />
+    <Compile Include="CRUD.py" />
+    <Compile Include="Medicine.py" />
+    <Compile Include="MedicineClass.py" />
+    <Compile Include="Models.py" />
+    <Compile Include="Models_2.py" />
+    <Compile Include="Patient_2.py" />
+    <Compile Include="PersonelClass.py" />
+    <Compile Include="Personnel.py" />
+    <Compile Include="Prescription.py" />
     <Compile Include="projectmedio.py" />
+    <Compile Include="Schedule.py" />
+    <Compile Include="ScheduleClass.py" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

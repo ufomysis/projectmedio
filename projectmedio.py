@@ -1,12 +1,15 @@
 import sys
 import pyperclip
 import inspect
+import Patient_2
+import Models_2
 from PySide.QtCore import*
 from PySide.QtGui import*
 from PySide.QtUiTools import*
 
 class userclientgui(QMainWindow):
     def __init__(self):
+        
         QMainWindow.__init__(self,None)
         self.dialogloader = QUiLoader();
         self.imagelogo = QPixmap("medio login.png");
@@ -29,7 +32,7 @@ class userclientgui(QMainWindow):
         form2 = self.loader.load("C:/Users/por_n/Documents/SEP project UI/log in mock up ui.ui",self);
         self.setCentralWidget(form2);
         self.background = form2.findChild(QLabel,"background");
-        acclevel = form2.findChild(QComboBox,"acclevel");
+        self.acclevel = form2.findChild(QComboBox,"acclevel");
         cslevel = form2.findChild(QLabel,"cslevel");
         self.keeplog = form2.findChild(QCheckBox,"keeplog");
         keeplogl = form2.findChild(QLabel,"keeplogl");
@@ -97,7 +100,11 @@ class userclientgui(QMainWindow):
         print(inputpassword);
         testuserkey = ""
         testpasskey = ""
-        if(inputusername == testuserkey and inputpassword == testpasskey):
+        #pat = Patient_2.Patient();
+        
+        '''seacrh for inputusername in db then geteverything 
+            self.patient.setName(name) and go on'''
+        if(inputusername == testuserkey and inputpassword == testpasskey and self.acclevel.currentText() == "Patient"):
             form3 = self.loader.load("C:/Users/por_n/Documents/SEP project UI/mainmenu.ui",self);
             self.setCentralWidget(form3);
             self.background = form3.findChild(QLabel,"background") ;
@@ -119,7 +126,7 @@ class userclientgui(QMainWindow):
             button5.setIcon(QIcon("contactandclicktocallbutton.png"));  
             button5.clicked.connect(self.tocontactlist);
         else:
-            print("wrong username or password");
+            print("wrong username, password or access level");
         
     def toappointment1(self):
         form3 = self.loader.load("C:/Users/por_n/Documents/SEP project UI/appointmentscreen.ui",self);
@@ -539,7 +546,7 @@ class userclientgui(QMainWindow):
         self.profimage = QPixmap(self.filepath);
         self.profpic.setPixmap(self.profimage);
         
-class GUIobserver:
+class PatientGUIobserver:
     def __init__(self, **kwargs):             
         self.guiuser = userclientgui()
         self.guiuser.show()
@@ -554,11 +561,30 @@ class GUIobserver:
     def getkeeploggedinstatus(self):
         return self.guiuser.keeplog.isChecked()
 
+class receptionistclientgui(QMainWindow):
+    def __init__(self, **kwargs):
+        QMainWindow.__init__(self,None)
+        self.dialogloader = QUiLoader();
+        self.imagelogo = QPixmap("medio login.png");
+        self.loader = QUiLoader();
+        form = self.loader.load("C:/Users/por_n/Documents/SEP project UI/loginregistered.ui",self);
+        self.setCentralWidget(form);
+        self.background = form.findChild(QLabel,"label") ;
+        self.image = QPixmap("bgb.png");
+        self.background.setPixmap(self.image);
+        self.background.show();       
+        button1 = form.findChild(QPushButton,"pushButton");
+        button1.setIcon(QIcon("medio login.png"));
+        button1.clicked.connect(self.tologinscreen);
+        self.timer = QTimer();
+        self.filepath = "";
+        self.userprof = "";    
+
 def main():
     
     app = QApplication(sys.argv)
-    observer1 = GUIobserver()
-
+    observer1 = PatientGUIobserver()
+    Models.initialize();
     return app.exec_()
 if __name__=="__main__":
     sys.exit(main())

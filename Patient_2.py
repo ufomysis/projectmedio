@@ -1,10 +1,10 @@
-import Models
+import Models_2
 import datetime
 
 class Patient:
     def __init__(self, patient_ID):
         self.patient_ID = patient_ID
-        self.name = ''
+        self.name = 'lol'
         self.date_of_birth = datetime.datetime.now
         self.phone_number = ''
         self.age = 0

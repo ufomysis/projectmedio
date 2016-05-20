@@ -1,7 +1,8 @@
 import datetime
-
+import Appointment as appt
+import Medicine as medic
 from peewee import *
-
+import PersonelClass as person
 DATABASE = SqliteDatabase('hospital.db')
 
 class Personnel(Model):
@@ -73,7 +74,7 @@ class Patient(Model):
 
 
 class Medicine(Model):
-    medicine_ID =CharField()
+    medicine_ID = CharField(unique=True)
     medicine_name = TextField()
     amount = IntegerField()
     price = FloatField()
@@ -152,17 +153,17 @@ class Appointment(Model):
             cls.create(
                     appointment_ID=appointment_ID,
                     date=date,
-                    patient_ID_fk=patient_ID_fk,
-                    personnel_ID_fk=personnel_ID_fk,
-                    prescription_ID_fk=prescription_ID_fk,
+                    patient_ID_fk=patient_ID,
+                    personnel_ID_fk=personnel_ID,
+                    prescription_ID_fk=prescription_ID,
                     service_charge=service_charge,
-                    lab_result=lab_result)            
+                    lab_result=lab_result)           
         except IntegrityError:
             app_tmp = Appointment.get(appointment_ID = appointment_ID)
             app_tmp.date = date
-            app_tmp.patient_ID_fk = patient_ID_fk
-            app_tmp.personnel_ID_fk = personnel_ID_fk
-            app_tmp.prescription_ID_fk = prescription_ID_fk
+            app_tmp.patient_ID_fk = patient_ID
+            app_tmp.personnel_ID_fk = personnel_ID
+            app_tmp.prescription_ID_fk = prescription_ID
             app_tmp.service_charge = service_charge
             app_tmp.save()
             
@@ -234,7 +235,13 @@ def initialize():
     DATABASE.connect()
     DATABASE.create_tables([Personnel,Patient,Medicine,Prescription,Appointment,Room, Roomuse], safe=True)
     DATABASE.close()
+    app = appt.Appointment("ap0001")
+    med = medic.Medicine("123")
+
+    date = datetime.datetime(2016,1,12,4,50,30,100,None)
+    app.create("1234",date,1,1,1,"1000","DIE")
     
-    
-    
+    #med.create("1234","lol",10000)
+    #Appointment.create("5678",date,"pat0002","doc0001","pre0002","1000","SAVIOR")
+
     

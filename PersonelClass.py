@@ -1,6 +1,6 @@
 import ScheduleClass as Sch
 import ApptClass as appt
-import Models
+import Models_2
 
 
 class Personnel:

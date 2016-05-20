@@ -1,5 +1,5 @@
 from peewee import *
-from Models import Patient, Appointment, Medicine, Prescription
+from Models_2 import Patient, Appointment, Medicine, Prescription
 
 db = SqliteDatabase('personnel.db')
 
