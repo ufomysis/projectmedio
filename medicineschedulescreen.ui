@@ -78,27 +78,17 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QLabel" name="profpic">
+  <widget class="QLabel" name="userpic">
    <property name="geometry">
     <rect>
-     <x>280</x>
+     <x>490</x>
      <y>10</y>
      <width>121</width>
      <height>151</height>
     </rect>
    </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="userdesc">
-   <property name="geometry">
-    <rect>
-     <x>470</x>
-     <y>60</y>
-     <width>271</width>
-     <height>51</height>
-    </rect>
+   <property name="autoFillBackground">
+    <bool>true</bool>
    </property>
    <property name="text">
     <string/>
@@ -140,7 +130,7 @@
   <widget class="QPushButton" name="delmed">
    <property name="geometry">
     <rect>
-     <x>400</x>
+     <x>490</x>
      <y>680</y>
      <width>111</width>
      <height>51</height>
@@ -152,29 +142,6 @@
    <property name="icon">
     <iconset resource="medioresoures.qrc">
      <normaloff>:/project medio/deletemedicinebutton.png</normaloff>:/project medio/deletemedicinebutton.png</iconset>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>111</width>
-     <height>51</height>
-    </size>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="setday">
-   <property name="geometry">
-    <rect>
-     <x>570</x>
-     <y>680</y>
-     <width>111</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="icon">
-    <iconset resource="medioresoures.qrc">
-     <normaloff>:/project medio/setdatebutton.png</normaloff>:/project medio/setdatebutton.png</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -233,12 +200,10 @@
   <zorder>backbutton</zorder>
   <zorder>lineverti</zorder>
   <zorder>linehori</zorder>
-  <zorder>profpic</zorder>
-  <zorder>userdesc</zorder>
+  <zorder>userpic</zorder>
   <zorder>calendar</zorder>
   <zorder>add</zorder>
   <zorder>delmed</zorder>
-  <zorder>setday</zorder>
   <zorder>changelook</zorder>
  </widget>
  <resources>

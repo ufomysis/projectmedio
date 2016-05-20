@@ -35,7 +35,112 @@
     <bool>true</bool>
    </property>
   </widget>
+  <widget class="QListWidget" name="numberlist">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>130</y>
+     <width>501</width>
+     <height>671</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="autoScrollMargin">
+    <number>16</number>
+   </property>
+   <property name="currentRow">
+    <number>0</number>
+   </property>
+   <item>
+    <property name="text">
+     <string>Fire department 191</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Thonburi hospital emergency service 0813216815312</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>etc</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>etc</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="contactheader">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>10</y>
+     <width>450</width>
+     <height>90</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="medioresoures.qrc">:/project medio/contactlabel.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="backbutton">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>140</y>
+     <width>181</width>
+     <height>631</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="medioresoures.qrc">
+     <normaloff>:/project medio/returnbutton.png</normaloff>:/project medio/returnbutton.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>181</width>
+     <height>631</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="copynumber">
+   <property name="geometry">
+    <rect>
+     <x>770</x>
+     <y>580</y>
+     <width>170</width>
+     <height>120</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="medioresoures.qrc">
+     <normaloff>:/project medio/copynumbutton.png</normaloff>:/project medio/copynumbutton.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>170</width>
+     <height>120</height>
+    </size>
+   </property>
+  </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="medioresoures.qrc"/>
+ </resources>
  <connections/>
 </ui>

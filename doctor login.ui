@@ -29,7 +29,7 @@
   <widget class="QLabel" name="cslevel">
    <property name="geometry">
     <rect>
-     <x>490</x>
+     <x>290</x>
      <y>480</y>
      <width>141</width>
      <height>21</height>
@@ -44,36 +44,11 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Choose access level&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="registerhere">
-   <property name="geometry">
-    <rect>
-     <x>550</x>
-     <y>640</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-     <underline>true</underline>
-    </font>
-   </property>
-   <property name="autoFillBackground">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Click here!</string>
-   </property>
-   <property name="flat">
-    <bool>false</bool>
-   </property>
-  </widget>
   <widget class="QPushButton" name="login">
    <property name="geometry">
     <rect>
      <x>290</x>
-     <y>570</y>
+     <y>560</y>
      <width>131</width>
      <height>41</height>
     </rect>
@@ -101,24 +76,6 @@
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Password&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="remuser">
-   <property name="geometry">
-    <rect>
-     <x>280</x>
-     <y>400</y>
-     <width>151</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="username">
@@ -152,71 +109,17 @@
     <bool>false</bool>
    </property>
   </widget>
-  <widget class="QCheckBox" name="keeplog">
-   <property name="geometry">
-    <rect>
-     <x>280</x>
-     <y>440</y>
-     <width>131</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
   <widget class="QPushButton" name="cancel">
    <property name="geometry">
     <rect>
      <x>540</x>
-     <y>570</y>
+     <y>560</y>
      <width>131</width>
      <height>41</height>
     </rect>
    </property>
    <property name="text">
     <string>Cancel</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="notres">
-   <property name="geometry">
-    <rect>
-     <x>460</x>
-     <y>640</y>
-     <width>91</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Not registered?&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="remuserl">
-   <property name="geometry">
-    <rect>
-     <x>300</x>
-     <y>480</y>
-     <width>151</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Remember username&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="passfield">
@@ -244,29 +147,11 @@
     <bool>false</bool>
    </property>
   </widget>
-  <widget class="QLabel" name="keeplogl">
-   <property name="geometry">
-    <rect>
-     <x>300</x>
-     <y>520</y>
-     <width>151</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Keep me logged in&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
   <widget class="QComboBox" name="acclevel">
    <property name="geometry">
     <rect>
-     <x>460</x>
-     <y>520</y>
+     <x>480</x>
+     <y>480</y>
      <width>201</width>
      <height>31</height>
     </rect>
@@ -329,7 +214,7 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="logo">
    <property name="geometry">
     <rect>
      <x>390</x>
@@ -345,22 +230,30 @@
     <pixmap resource="medioresoures.qrc">:/project medio/doctorlogin.png</pixmap>
    </property>
   </widget>
+  <widget class="QLabel" name="oncelog">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>640</y>
+     <width>231</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; color:#ff0000;&quot;&gt;This login will on be done once&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
   <zorder>background</zorder>
   <zorder>userfield</zorder>
   <zorder>cslevel</zorder>
-  <zorder>registerhere</zorder>
   <zorder>login</zorder>
   <zorder>password</zorder>
-  <zorder>remuser</zorder>
   <zorder>username</zorder>
-  <zorder>keeplog</zorder>
   <zorder>cancel</zorder>
-  <zorder>notres</zorder>
-  <zorder>remuserl</zorder>
   <zorder>passfield</zorder>
-  <zorder>keeplogl</zorder>
   <zorder>acclevel</zorder>
-  <zorder>label</zorder>
+  <zorder>logo</zorder>
+  <zorder>oncelog</zorder>
  </widget>
  <resources>
   <include location="medioresoures.qrc"/>

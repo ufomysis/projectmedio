@@ -32,8 +32,9 @@
     <string/>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>../../Desktop/medio login.png</normaloff>../../Desktop/medio login.png</iconset>
+    <iconset resource="medioresoures.qrc">
+     <normaloff>:/project medio/medio login.png</normaloff>
+     <normalon>:/project medio/medio login.png</normalon>:/project medio/medio login.png</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -61,7 +62,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>../../Downloads/bgb.jpg</pixmap>
+    <pixmap resource="medioresoures.qrc">:/project medio/bgb.jpg</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -70,6 +71,8 @@
   <zorder>label</zorder>
   <zorder>pushButton</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="medioresoures.qrc"/>
+ </resources>
  <connections/>
 </ui>

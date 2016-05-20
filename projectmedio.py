@@ -1,5 +1,6 @@
 import sys
 import pyperclip
+import inspect
 from PySide.QtCore import*
 from PySide.QtGui import*
 from PySide.QtUiTools import*
@@ -7,6 +8,7 @@ from PySide.QtUiTools import*
 class userclientgui(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self,None)
+        self.dialogloader = QUiLoader();
         self.imagelogo = QPixmap("medio login.png");
         self.loader = QUiLoader();
         form = self.loader.load("C:/Users/por_n/Documents/SEP project UI/loginregistered.ui",self);
@@ -19,6 +21,8 @@ class userclientgui(QMainWindow):
         button1.setIcon(QIcon("medio login.png"));
         button1.clicked.connect(self.tologinscreen);
         self.timer = QTimer();
+        self.filepath = "";
+        self.userprof = "";
        
     
     def tologinscreen(self):
@@ -121,32 +125,55 @@ class userclientgui(QMainWindow):
         form3 = self.loader.load("C:/Users/por_n/Documents/SEP project UI/appointmentscreen.ui",self);
         self.setCentralWidget(form3);
         self.background = form3.findChild(QLabel,"background");
-        orth = form3.findChild(QPushButton,"Ortho");
-        gastro = form3.findChild(QPushButton,"GI");  
-        emer = form3.findChild(QPushButton,"ER");
-        dermato = form3.findChild(QPushButton,"Derma");
-        pedia = form3.findChild(QPushButton,"Ped");
-        outpat = form3.findChild(QPushButton,"OPD");
-        cardi = form3.findChild(QPushButton,"Cardio");
-        neurology = form3.findChild(QPushButton,"Neuro");
-        rad = form3.findChild(QPushButton,"Radio");
+        self.orth = form3.findChild(QPushButton,"Ortho");
+        self.gastro = form3.findChild(QPushButton,"GI");  
+        self.emer = form3.findChild(QPushButton,"ER");
+        self.dermato = form3.findChild(QPushButton,"Derma");
+        self.pedia = form3.findChild(QPushButton,"Ped");
+        self.outpat = form3.findChild(QPushButton,"OPD");
+        self.cardi = form3.findChild(QPushButton,"Cardio");
+        self.neurology = form3.findChild(QPushButton,"Neuro");
+        self.rad = form3.findChild(QPushButton,"Radio");
         back = form3.findChild(QPushButton,"backtomain");
         self.clocknow = form3.findChild(QLCDNumber,"clock");
         diviv = form3.findChild(QLine,"dividerverti");
         divih = form3.findChild(QLine,"dividerhori");
+        prof = form3.findChild(QLabel,"userpic");
         self.image = QPixmap("bgb.png");
         self.background.setPixmap(self.image);
-        orth.setIcon(QIcon("orthopedicbutton.png"));
-        gastro.setIcon(QIcon("GIbutton.png"));
-        emer.setIcon(QIcon("ERbutton.png"));
-        dermato.setIcon(QIcon("dermatologybutton.png"));
-        pedia.setIcon(QIcon("pedibutton.png"));
-        outpat.setIcon(QIcon("opdbutton.png"));
-        cardi.setIcon(QIcon("cardiologybutton.png"));
-        neurology.setIcon(QIcon("neurologybutton.png"));
-        rad.setIcon(QIcon("radiologybutton.png"));
+        self.orth.setIcon(QIcon("orthopedicbutton.png"));
+        self.gastro.setIcon(QIcon("GIbutton.png"));
+        self.emer.setIcon(QIcon("ERbutton.png"));
+        self.dermato.setIcon(QIcon("dermatologybutton.png"));
+        self.pedia.setIcon(QIcon("pedibutton.png"));
+        self.outpat.setIcon(QIcon("opdbutton.png"));
+        self.cardi.setIcon(QIcon("cardiologybutton.png"));
+        self.neurology.setIcon(QIcon("neurologybutton.png"));
+        self.rad.setIcon(QIcon("radiologybutton.png"));
         back.setIcon(QIcon("returnbutton.png"));
+        self.orth.setAccessibleName("Orthopedic");
+        self.gastro.setAccessibleName("GI");
+        self.emer.setAccessibleName("ER");
+        self.dermato.setAccessibleName("Dermatology");
+        self.pedia.setAccessibleName("Pediatric");
+        self.outpat.setAccessibleName("OPD");
+        self.cardi.setAccessibleName("Cardiology");
+        self.neurology.setAccessibleName("Neurology");
+        self.rad.setAccessibleName("Radiology");
         
+        self.profimage = QPixmap(self.filepath);
+        prof.setPixmap(self.profimage);
+
+        self.orth.clicked.connect(self.popuprequestdoctor1)
+        self.gastro.clicked.connect(self.popuprequestdoctor2)
+        self.emer.clicked.connect(self.popuprequestdoctor3)
+        self.dermato.clicked.connect(self.popuprequestdoctor4)
+        self.pedia.clicked.connect(self.popuprequestdoctor5)
+        self.outpat.clicked.connect(self.popuprequestdoctor6)
+        self.cardi.clicked.connect(self.popuprequestdoctor7)
+        self.neurology.clicked.connect(self.popuprequestdoctor8)
+        self.rad.clicked.connect(self.popuprequestdoctor9)
+
         back.clicked.connect(self.backtomainmenu); 
             
         self.clocknow.setSegmentStyle(QLCDNumber.Filled);
@@ -162,18 +189,21 @@ class userclientgui(QMainWindow):
         form4 = self.loader.load("C:/Users/por_n/Documents/SEP project UI/medicineschedulescreen.ui",self);
         self.setCentralWidget(form4);
         self.background = form4.findChild(QLabel,"background");
+        prof = form4.findChild(QLabel,"userpic");
         addmed = form4.findChild(QPushButton,"add");
         dele = form4.findChild(QPushButton,"delmed");
-        sd = form4.findChild(QPushButton,"setday");
+
         cv = form4.findChild(QPushButton,"changelook");
         cal  = form4.findChild(QCalendarWidget,"calendar");
         back = form4.findChild(QPushButton,"backbutton");
         self.image = QPixmap("bgb.png");
         self.background.setPixmap(self.image);
-        
+        self.profimage = QPixmap(self.filepath);
+        prof.setPixmap(self.profimage);
+
         addmed.setIcon(QIcon("addmedbutton.png"));
         dele.setIcon(QIcon("deletemedicinebutton.png"));
-        sd.setIcon(QIcon("setdatebutton.png"));
+
         cv.setIcon(QIcon("changeviewbutton.png"));
         back.setIcon(QIcon("returnbutton.png"));
         
@@ -181,8 +211,8 @@ class userclientgui(QMainWindow):
         cv.clicked.connect(self.tomedscheduleweek);         
         addmed.clicked.connect(self.popupinsert);
         dele.clicked.connect(self.removeitemfromlist); 
-        sd.clicked.connect(self.popupchoosedate); 
-
+        
+        
         self.clocknow  = form4.findChild(QLCDNumber,"clock");
         
         self.timer = QTimer();
@@ -293,23 +323,28 @@ class userclientgui(QMainWindow):
         self.timer.timeout.connect(self.showtime)
         self.timer.start(1000);
     def tosettingscreen(self):
-        finalform = self.loader.load("C:/Users/por_n/Documents/SEP project UI/settings.ui",self);
-        self.setCentralWidget(finalform);
-        self.background = finalform.findChild(QLabel,"background");
+        
+        self.finalform = self.loader.load("C:/Users/por_n/Documents/SEP project UI/settings.ui",self);
+        self.setCentralWidget(self.finalform);
+        self.background = self.finalform.findChild(QLabel,"background");
         self.image = QPixmap("bgb.png");
         self.background.setPixmap(self.image);
-        back = finalform.findChild(QPushButton,"backbutton");        
+        back = self.finalform.findChild(QPushButton,"backbutton");        
         back.setIcon(QIcon("returnbutton.png"));
-        self.clocknow = finalform.findChild(QLCDNumber,"clock");
+        self.clocknow = self.finalform.findChild(QLCDNumber,"clock");
 
-        self.userdesc = finalform.findChild(QPlainTextEdit, "descriptionedit");
-        self.profpic = finalform.findChild(QLabel, "preview");
-        editheader = finalform.findChild(QLabel,"descriptionbanner");
-        browsebutton = finalform.findChild(QPushButton,"filebrowse");        
+        self.userdesc = self.finalform.findChild(QPlainTextEdit, "descriptionedit");
+        self.userdesc.setPlainText(self.userprof);
+        self.profpic = self.finalform.findChild(QLabel, "preview");
+        editheader = self.finalform.findChild(QLabel,"descriptionbanner");
+        browsebutton = self.finalform.findChild(QPushButton,"filebrowse");        
         image12 = QPixmap("descheader.png");
         editheader.setPixmap(image12);
-
+        self.profimage = QPixmap(self.filepath);    
+        self.profpic.setPixmap(self.profimage);
         self.lineEdit = QLineEdit();
+        self.userprof = self.userdesc.toPlainText();
+        self.userdesc.insertPlainText(self.userprof);
                 
         browsebutton.clicked.connect(self.selectFile);
         back.clicked.connect(self.backtomainmenu); 
@@ -318,7 +353,6 @@ class userclientgui(QMainWindow):
         self.timer.timeout.connect(self.showtime)
         self.timer.start(1000);
     def popupinsert(self):
-        self.dialogloader = QUiLoader();
         self.dialog = self.dialogloader.load("C:/Users/por_n/Documents/SEP project UI/popupdialogadd.ui",self);
         self.medbox = self.dialog.findChild(QLineEdit,"mednameedit");
         self.timebox = self.dialog.findChild(QLineEdit,"dateedit");
@@ -334,7 +368,7 @@ class userclientgui(QMainWindow):
         cc.clicked.connect(self.dialog.close);
             
         self.dialog.exec();
-    def popupchoosedate(self):
+        '''def popupchoosedate(self):
         self.dialog = self.dialogloader.load("C:/Users/por_n/Documents/SEP project UI/popupchoosedate.ui",self);
         self.backgroundd = self.dialog.findChild(QLabel,"bgd");
         self.image2 = QPixmap("bgd.png");
@@ -348,6 +382,132 @@ class userclientgui(QMainWindow):
         sete = self.dialog.findChild(QPushButton,"okend");
         canc = self.dialog.findChild(QPushButton,"cancel");
         
+        self.dialog.exec();'''
+    def popuprequestdoctor1(self):
+        self.dialog = self.dialogloader.load("C:/Users/por_n/Documents/SEP project UI/popuprequestappointment.ui",self);
+        self.backgroundd = self.dialog.findChild(QLabel,"bgd");
+        self.image2 = QPixmap("bgd.png");
+        self.backgroundd.setPixmap(self.image2);
+        deptlab = self.dialog.findChild(QLabel,"dept");
+        deptn = self.dialog.findChild(QLabel,"deptname");
+        deptn.setText(self.orth.accessibleName());
+        req = self.dialog.findChild(QPushButton,"request");
+        speclab = self.dialog.findChild(QLabel,"spec");
+        speced = self.dialog.findChild(QPlainTextDocumentLayout,"specedit");
+
+        print(self.orth.accessibleName());
+        self.dialog.exec();
+    def popuprequestdoctor2(self):
+        self.dialog = self.dialogloader.load("C:/Users/por_n/Documents/SEP project UI/popuprequestappointment.ui",self);
+        self.backgroundd = self.dialog.findChild(QLabel,"bgd");
+        self.image2 = QPixmap("bgd.png");
+        self.backgroundd.setPixmap(self.image2);
+        deptlab = self.dialog.findChild(QLabel,"dept");
+        deptn = self.dialog.findChild(QLabel,"deptname");
+        deptn.setText(self.gastro.accessibleName());
+        req = self.dialog.findChild(QPushButton,"request");
+        speclab = self.dialog.findChild(QLabel,"spec");
+        speced = self.dialog.findChild(QPlainTextDocumentLayout,"specedit");
+
+        print(self.gastro.accessibleName());
+        self.dialog.exec();
+    def popuprequestdoctor3(self):
+        self.dialog = self.dialogloader.load("C:/Users/por_n/Documents/SEP project UI/popuprequestappointment.ui",self);
+        self.backgroundd = self.dialog.findChild(QLabel,"bgd");
+        self.image2 = QPixmap("bgd.png");
+        self.backgroundd.setPixmap(self.image2);
+        deptlab = self.dialog.findChild(QLabel,"dept");
+        deptn = self.dialog.findChild(QLabel,"deptname");
+        deptn.setText(self.emer.accessibleName());
+        req = self.dialog.findChild(QPushButton,"request");
+        speclab = self.dialog.findChild(QLabel,"spec");
+        speced = self.dialog.findChild(QPlainTextDocumentLayout,"specedit");
+
+        print(self.emer.accessibleName());
+        self.dialog.exec();
+    def popuprequestdoctor4(self):
+        self.dialog = self.dialogloader.load("C:/Users/por_n/Documents/SEP project UI/popuprequestappointment.ui",self);
+        self.backgroundd = self.dialog.findChild(QLabel,"bgd");
+        self.image2 = QPixmap("bgd.png");
+        self.backgroundd.setPixmap(self.image2);
+        deptlab = self.dialog.findChild(QLabel,"dept");
+        deptn = self.dialog.findChild(QLabel,"deptname");
+        deptn.setText(self.dermato.accessibleName());
+        req = self.dialog.findChild(QPushButton,"request");
+        speclab = self.dialog.findChild(QLabel,"spec");
+        speced = self.dialog.findChild(QPlainTextDocumentLayout,"specedit");
+
+        print(self.dermato.accessibleName());
+        self.dialog.exec();
+    def popuprequestdoctor5(self):
+        self.dialog = self.dialogloader.load("C:/Users/por_n/Documents/SEP project UI/popuprequestappointment.ui",self);
+        self.backgroundd = self.dialog.findChild(QLabel,"bgd");
+        self.image2 = QPixmap("bgd.png");
+        self.backgroundd.setPixmap(self.image2);
+        deptlab = self.dialog.findChild(QLabel,"dept");
+        deptn = self.dialog.findChild(QLabel,"deptname");
+        deptn.setText(self.pedia.accessibleName());
+        req = self.dialog.findChild(QPushButton,"request");
+        speclab = self.dialog.findChild(QLabel,"spec");
+        speced = self.dialog.findChild(QPlainTextDocumentLayout,"specedit");
+
+        print(self.pedia.accessibleName());
+        self.dialog.exec();
+    def popuprequestdoctor6(self):
+        self.dialog = self.dialogloader.load("C:/Users/por_n/Documents/SEP project UI/popuprequestappointment.ui",self);
+        self.backgroundd = self.dialog.findChild(QLabel,"bgd");
+        self.image2 = QPixmap("bgd.png");
+        self.backgroundd.setPixmap(self.image2);
+        deptlab = self.dialog.findChild(QLabel,"dept");
+        deptn = self.dialog.findChild(QLabel,"deptname");
+        deptn.setText(self.outpat.accessibleName());
+        req = self.dialog.findChild(QPushButton,"request");
+        speclab = self.dialog.findChild(QLabel,"spec");
+        speced = self.dialog.findChild(QPlainTextDocumentLayout,"specedit");
+
+        print(self.outpat.accessibleName());
+        self.dialog.exec();
+    def popuprequestdoctor7(self):
+        self.dialog = self.dialogloader.load("C:/Users/por_n/Documents/SEP project UI/popuprequestappointment.ui",self);
+        self.backgroundd = self.dialog.findChild(QLabel,"bgd");
+        self.image2 = QPixmap("bgd.png");
+        self.backgroundd.setPixmap(self.image2);
+        deptlab = self.dialog.findChild(QLabel,"dept");
+        deptn = self.dialog.findChild(QLabel,"deptname");
+        deptn.setText(self.cardi.accessibleName());
+        req = self.dialog.findChild(QPushButton,"request");
+        speclab = self.dialog.findChild(QLabel,"spec");
+        speced = self.dialog.findChild(QPlainTextDocumentLayout,"specedit");
+
+        print(self.cardi.accessibleName());
+        self.dialog.exec();
+    def popuprequestdoctor8(self):
+        self.dialog = self.dialogloader.load("C:/Users/por_n/Documents/SEP project UI/popuprequestappointment.ui",self);
+        self.backgroundd = self.dialog.findChild(QLabel,"bgd");
+        self.image2 = QPixmap("bgd.png");
+        self.backgroundd.setPixmap(self.image2);
+        deptlab = self.dialog.findChild(QLabel,"dept");
+        deptn = self.dialog.findChild(QLabel,"deptname");
+        deptn.setText(self.neurology.accessibleName());
+        req = self.dialog.findChild(QPushButton,"request");
+        speclab = self.dialog.findChild(QLabel,"spec");
+        speced = self.dialog.findChild(QPlainTextDocumentLayout,"specedit");
+
+        print(self.neurology.accessibleName());
+        self.dialog.exec();
+    def popuprequestdoctor9(self):
+        self.dialog = self.dialogloader.load("C:/Users/por_n/Documents/SEP project UI/popuprequestappointment.ui",self);
+        self.backgroundd = self.dialog.findChild(QLabel,"bgd");
+        self.image2 = QPixmap("bgd.png");
+        self.backgroundd.setPixmap(self.image2);
+        deptlab = self.dialog.findChild(QLabel,"dept");
+        deptn = self.dialog.findChild(QLabel,"deptname");
+        deptn.setText(self.rad.accessibleName());
+        req = self.dialog.findChild(QPushButton,"request");
+        speclab = self.dialog.findChild(QLabel,"spec");
+        speced = self.dialog.findChild(QPlainTextDocumentLayout,"specedit");
+
+        print(self.rad.accessibleName());
         self.dialog.exec();
     def additemtolist(self):
         medname = "'killyourself";
@@ -373,7 +533,11 @@ class userclientgui(QMainWindow):
         pyperclip.copy(self.contactlist.currentItem().text());
         print("text copied");
     def selectFile(self):
-        self.lineEdit.setText(QFileDialog.getOpenFileName())
+        #print(QFileDialog.getOpenFileName(self.finalform,"Choose a profile picture",'','Images (*.png)'));
+        self.lineEdit.setText(QFileDialog.getOpenFileName(self.finalform,"Choose a profile picture",'','Images (*.png)')[0])
+        self.filepath = self.lineEdit.text();
+        self.profimage = QPixmap(self.filepath);
+        self.profpic.setPixmap(self.profimage);
         
 class GUIobserver:
     def __init__(self, **kwargs):             

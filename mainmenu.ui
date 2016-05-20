@@ -19,7 +19,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="medsche">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -45,7 +45,7 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="contact">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -71,7 +71,7 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_3">
+  <widget class="QPushButton" name="appointment">
    <property name="geometry">
     <rect>
      <x>290</x>
@@ -97,7 +97,7 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_4">
+  <widget class="QPushButton" name="transac">
    <property name="geometry">
     <rect>
      <x>680</x>
@@ -123,7 +123,7 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_5">
+  <widget class="QPushButton" name="settings">
    <property name="geometry">
     <rect>
      <x>680</x>
@@ -149,7 +149,7 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -168,12 +168,12 @@
     <bool>true</bool>
    </property>
   </widget>
-  <zorder>label</zorder>
-  <zorder>pushButton</zorder>
-  <zorder>pushButton_2</zorder>
-  <zorder>pushButton_3</zorder>
-  <zorder>pushButton_4</zorder>
-  <zorder>pushButton_5</zorder>
+  <zorder>background</zorder>
+  <zorder>medsche</zorder>
+  <zorder>contact</zorder>
+  <zorder>appointment</zorder>
+  <zorder>transac</zorder>
+  <zorder>settings</zorder>
  </widget>
  <resources>
   <include location="medioresoures.qrc"/>

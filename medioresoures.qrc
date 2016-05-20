@@ -1,5 +1,43 @@
 <RCC>
   <qresource prefix="project medio">
+    <file>descheader.png</file>
+    <file>dateheader.png</file>
+    <file>nameheader.png</file>
+    <file>priceheader.png</file>
+    <file>contactlabel.png</file>
+    <file>copynumbutton.png</file>
+    <file>chooselabel.png</file>
+    <file>bgd.png</file>
+    <file>addmedbutton.png</file>
+    <file>changeviewbutton.png</file>
+    <file>deletemedicinebutton.png</file>
+    <file>setdatebutton.png</file>
+    <file>medbanner.png</file>
+    <file>friday.png</file>
+    <file>monday.png</file>
+    <file>saturday.png</file>
+    <file>sunday.png</file>
+    <file>thursday.png</file>
+    <file>tuesday.png</file>
+    <file>wednesday.png</file>
+    <file>returnbutton.png</file>
+    <file>cardiologybutton.png</file>
+    <file>neurologybutton.png</file>
+    <file>radiologybutton.png</file>
+    <file>opdbutton.png</file>
+    <file>pedibutton.png</file>
+    <file>dermatologybutton.png</file>
+    <file>ERbutton.png</file>
+    <file>GIbutton.png</file>
+    <file>orthopedicbutton.png</file>
+    <file>appointmentmenu.png</file>
+    <file>doctorlogin.png</file>
+    <file>contactandclicktocallbutton.png</file>
+    <file>Historybutton.png</file>
+    <file>main button.png</file>
+    <file>medicineschedulebutton.png</file>
+    <file>settingsbutton.png</file>
+    <file>Mainmenubg.png</file>
     <file>bgb.jpg</file>
     <file>medio login.png</file>
   </qresource>

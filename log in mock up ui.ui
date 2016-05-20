@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="login">
    <property name="geometry">
     <rect>
      <x>290</x>
@@ -29,7 +29,7 @@
     <bool>false</bool>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="cancel">
    <property name="geometry">
     <rect>
      <x>540</x>
@@ -42,7 +42,7 @@
     <string>Cancel</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="checkBox">
+  <widget class="QCheckBox" name="remuser">
    <property name="geometry">
     <rect>
      <x>280</x>
@@ -60,7 +60,7 @@
     <string/>
    </property>
   </widget>
-  <widget class="QCheckBox" name="checkBox_2">
+  <widget class="QCheckBox" name="keeplog">
    <property name="geometry">
     <rect>
      <x>280</x>
@@ -78,7 +78,7 @@
     <string/>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox">
+  <widget class="QComboBox" name="acclevel">
    <property name="geometry">
     <rect>
      <x>460</x>
@@ -123,7 +123,7 @@
     </property>
    </item>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="passfield">
    <property name="geometry">
     <rect>
      <x>280</x>
@@ -132,8 +132,23 @@
      <height>41</height>
     </rect>
    </property>
+   <property name="inputMask">
+    <string/>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Password</enum>
+   </property>
+   <property name="placeholderText">
+    <string>Please enter your password</string>
+   </property>
+   <property name="clearButtonEnabled">
+    <bool>false</bool>
+   </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
+  <widget class="QLineEdit" name="userfield">
    <property name="geometry">
     <rect>
      <x>280</x>
@@ -142,8 +157,11 @@
      <height>41</height>
     </rect>
    </property>
+   <property name="placeholderText">
+    <string>Please enter your username</string>
+   </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="username">
    <property name="geometry">
     <rect>
      <x>280</x>
@@ -174,7 +192,7 @@
     <bool>false</bool>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="password">
    <property name="geometry">
     <rect>
      <x>280</x>
@@ -192,7 +210,7 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Password&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_3">
+  <widget class="QLabel" name="logo">
    <property name="geometry">
     <rect>
      <x>360</x>
@@ -211,7 +229,7 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QLabel" name="label_4">
+  <widget class="QLabel" name="cslevel">
    <property name="geometry">
     <rect>
      <x>490</x>
@@ -229,7 +247,7 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Choose access level&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_5">
+  <widget class="QLabel" name="notres">
    <property name="geometry">
     <rect>
      <x>460</x>
@@ -247,7 +265,7 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Not registered?&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_3">
+  <widget class="QPushButton" name="registerhere">
    <property name="geometry">
     <rect>
      <x>550</x>
@@ -272,7 +290,7 @@
     <bool>false</bool>
    </property>
   </widget>
-  <widget class="QLabel" name="label_6">
+  <widget class="QLabel" name="background">
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -294,7 +312,7 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QLabel" name="label_7">
+  <widget class="QLabel" name="remuserl">
    <property name="geometry">
     <rect>
      <x>300</x>
@@ -312,7 +330,7 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Remember username&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_8">
+  <widget class="QLabel" name="keeplogl">
    <property name="geometry">
     <rect>
      <x>300</x>
@@ -330,22 +348,22 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Keep me logged in&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <zorder>label_6</zorder>
-  <zorder>pushButton</zorder>
-  <zorder>pushButton_2</zorder>
-  <zorder>checkBox</zorder>
-  <zorder>checkBox_2</zorder>
-  <zorder>comboBox</zorder>
-  <zorder>lineEdit</zorder>
-  <zorder>lineEdit_2</zorder>
-  <zorder>label</zorder>
-  <zorder>label_2</zorder>
-  <zorder>label_3</zorder>
-  <zorder>label_4</zorder>
-  <zorder>label_5</zorder>
-  <zorder>pushButton_3</zorder>
-  <zorder>label_7</zorder>
-  <zorder>label_8</zorder>
+  <zorder>background</zorder>
+  <zorder>login</zorder>
+  <zorder>cancel</zorder>
+  <zorder>remuser</zorder>
+  <zorder>keeplog</zorder>
+  <zorder>acclevel</zorder>
+  <zorder>passfield</zorder>
+  <zorder>userfield</zorder>
+  <zorder>username</zorder>
+  <zorder>password</zorder>
+  <zorder>logo</zorder>
+  <zorder>cslevel</zorder>
+  <zorder>notres</zorder>
+  <zorder>registerhere</zorder>
+  <zorder>remuserl</zorder>
+  <zorder>keeplogl</zorder>
  </widget>
  <resources/>
  <connections/>

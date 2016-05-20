@@ -16,27 +16,27 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>290</x>
+     <x>230</x>
      <y>150</y>
-     <width>75</width>
+     <width>131</width>
      <height>23</height>
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>Request appointment</string>
    </property>
   </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>260</x>
+     <x>60</x>
      <y>50</y>
      <width>181</width>
      <height>51</height>
     </rect>
    </property>
    <property name="text">
-    <string>Appointment requested</string>
+    <string>Please enter specification</string>
    </property>
   </widget>
  </widget>
