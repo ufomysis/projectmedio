@@ -1,5 +1,5 @@
 import sys
-
+import pyperclip
 from PySide.QtCore import*
 from PySide.QtGui import*
 from PySide.QtUiTools import*
@@ -18,6 +18,8 @@ class userclientgui(QMainWindow):
         button1 = form.findChild(QPushButton,"pushButton");
         button1.setIcon(QIcon("medio login.png"));
         button1.clicked.connect(self.tologinscreen);
+        self.timer = QTimer();
+       
     
     def tologinscreen(self):
         form2 = self.loader.load("C:/Users/por_n/Documents/SEP project UI/log in mock up ui.ui",self);
@@ -45,8 +47,9 @@ class userclientgui(QMainWindow):
         logo.show();
         cancel.clicked.connect(self.backtofront);
         loginb.clicked.connect(self.login);
+   
     def backtofront(self):
-        self.timer.stop();
+
         form = self.loader.load("C:/Users/por_n/Documents/SEP project UI/loginregistered.ui",self);
         self.setCentralWidget(form);
         self.background = form.findChild(QLabel,"label") ;
@@ -56,6 +59,7 @@ class userclientgui(QMainWindow):
         button1 = form.findChild(QPushButton,"pushButton");
         button1.setIcon(QIcon("medio login.png"));
         button1.clicked.connect(self.tologinscreen);    
+    
     def backtomainmenu(self):
         self.timer.stop();
         form3 = self.loader.load("C:/Users/por_n/Documents/SEP project UI/mainmenu.ui",self);
@@ -71,10 +75,14 @@ class userclientgui(QMainWindow):
         button2.clicked.connect(self.tomedschedulemonth); 
         button3 = form3.findChild(QPushButton,"transac");
         button3.setIcon(QIcon("Historybutton.png"));
+        button3.clicked.connect(self.tohistory);
         button4 = form3.findChild(QPushButton,"settings");
         button4.setIcon(QIcon("settingsbutton.png"));
+        button4.clicked.connect(self.tosettingscreen);
         button5 = form3.findChild(QPushButton,"contact");
-        button5.setIcon(QIcon("contactandclicktocallbutton.png")); 
+        button5.setIcon(QIcon("contactandclicktocallbutton.png"));  
+        button5.clicked.connect(self.tocontactlist);
+
     def login(self):
         inputusername = self.userfield.text();
         inputpassword = self.passfield.text();
@@ -99,10 +107,13 @@ class userclientgui(QMainWindow):
             button2.clicked.connect(self.tomedschedulemonth); 
             button3 = form3.findChild(QPushButton,"transac");
             button3.setIcon(QIcon("Historybutton.png"));
+            button3.clicked.connect(self.tohistory);
             button4 = form3.findChild(QPushButton,"settings");
             button4.setIcon(QIcon("settingsbutton.png"));
+            button4.clicked.connect(self.tosettingscreen);
             button5 = form3.findChild(QPushButton,"contact");
-            button5.setIcon(QIcon("contactandclicktocallbutton.png")); 
+            button5.setIcon(QIcon("contactandclicktocallbutton.png"));  
+            button5.clicked.connect(self.tocontactlist);
         else:
             print("wrong username or password");
         
@@ -165,10 +176,13 @@ class userclientgui(QMainWindow):
         sd.setIcon(QIcon("setdatebutton.png"));
         cv.setIcon(QIcon("changeviewbutton.png"));
         back.setIcon(QIcon("returnbutton.png"));
-
+        
         back.clicked.connect(self.backtomainmenu);         
         cv.clicked.connect(self.tomedscheduleweek);         
-        
+        addmed.clicked.connect(self.popupinsert);
+        dele.clicked.connect(self.removeitemfromlist); 
+        sd.clicked.connect(self.popupchoosedate); 
+
         self.clocknow  = form4.findChild(QLCDNumber,"clock");
         
         self.timer = QTimer();
@@ -230,6 +244,79 @@ class userclientgui(QMainWindow):
         self.timer = QTimer();
         self.timer.timeout.connect(self.showtime)
         self.timer.start(1000);
+    def tocontactlist(self):
+
+        form5 = self.loader.load("C:/Users/por_n/Documents/SEP project UI/contactsscreen.ui",self);
+        self.setCentralWidget(form5);
+        self.background = form5.findChild(QLabel,"background");
+        self.image = QPixmap("bgb.png");
+        self.background.setPixmap(self.image);
+        header = form5.findChild(QLabel,"contactheader");
+        imaged = QPixmap("contactlabel.png")
+        header.setPixmap(imaged)
+        back = form5.findChild(QPushButton,"backbutton");
+        self.contactlist =  form5.findChild(QListWidget,"numberlist");
+        copybutton = form5.findChild(QPushButton,"copynumber");
+
+        copybutton.setIcon(QIcon("copynumbutton.png"));
+        back.setIcon(QIcon("returnbutton.png"));
+
+        back.clicked.connect(self.backtomainmenu); 
+        copybutton.clicked.connect(self.copytexttoclip);
+    def tohistory(self):
+        form6 = self.loader.load("C:/Users/por_n/Documents/SEP project UI/historyscreen.ui",self);
+        self.setCentralWidget(form6);
+        self.background = form6.findChild(QLabel,"background");
+        self.image = QPixmap("bgb.png");
+        self.background.setPixmap(self.image);
+        namehead = form6.findChild(QLabel,"name");
+        datehead = form6.findChild(QLabel,"date");
+        pricehead = form6.findChild(QLabel,"total");
+        self.namel = form6.findChild(QListWidget,"namelist");
+        self.datel = form6.findChild(QListWidget,"datelist");
+        self.totall = form6.findChild(QListWidget,"moneylist");
+        back = form6.findChild(QPushButton,"backbutton");
+        self.clocknow = form6.findChild(QLCDNumber,"clock");
+        horil = form6.findChild(QLine,"linehori");
+        vertil = form6.findChild(QLine,"lineverti");
+        image9 = QPixmap("nameheader.png");
+        image10 = QPixmap("dateheader.png");
+        image11 = QPixmap("priceheader.png");
+        namehead.setPixmap(image9);
+        datehead.setPixmap(image10);
+        pricehead.setPixmap(image11);
+        back.setIcon(QIcon("returnbutton.png"));
+
+        back.clicked.connect(self.backtomainmenu); 
+
+        self.timer = QTimer();
+        self.timer.timeout.connect(self.showtime)
+        self.timer.start(1000);
+    def tosettingscreen(self):
+        finalform = self.loader.load("C:/Users/por_n/Documents/SEP project UI/settings.ui",self);
+        self.setCentralWidget(finalform);
+        self.background = finalform.findChild(QLabel,"background");
+        self.image = QPixmap("bgb.png");
+        self.background.setPixmap(self.image);
+        back = finalform.findChild(QPushButton,"backbutton");        
+        back.setIcon(QIcon("returnbutton.png"));
+        self.clocknow = finalform.findChild(QLCDNumber,"clock");
+
+        self.userdesc = finalform.findChild(QPlainTextEdit, "descriptionedit");
+        self.profpic = finalform.findChild(QLabel, "preview");
+        editheader = finalform.findChild(QLabel,"descriptionbanner");
+        browsebutton = finalform.findChild(QPushButton,"filebrowse");        
+        image12 = QPixmap("descheader.png");
+        editheader.setPixmap(image12);
+
+        self.lineEdit = QLineEdit();
+                
+        browsebutton.clicked.connect(self.selectFile);
+        back.clicked.connect(self.backtomainmenu); 
+        
+        self.timer = QTimer();
+        self.timer.timeout.connect(self.showtime)
+        self.timer.start(1000);
     def popupinsert(self):
         self.dialogloader = QUiLoader();
         self.dialog = self.dialogloader.load("C:/Users/por_n/Documents/SEP project UI/popupdialogadd.ui",self);
@@ -246,6 +333,21 @@ class userclientgui(QMainWindow):
         atl.clicked.connect(self.additemtolist);
         cc.clicked.connect(self.dialog.close);
             
+        self.dialog.exec();
+    def popupchoosedate(self):
+        self.dialog = self.dialogloader.load("C:/Users/por_n/Documents/SEP project UI/popupchoosedate.ui",self);
+        self.backgroundd = self.dialog.findChild(QLabel,"bgd");
+        self.image2 = QPixmap("bgd.png");
+        self.backgroundd.setPixmap(self.image2);
+        imagex =  QPixmap("chooselabel.png");
+        labelchoose = self.dialog.findChild(QLabel,"choose");
+        labelchoose.setPixmap(imagex);
+        ds = self.dialog.findChild(QLabel,"datestart");
+        de = self.dialog.findChild(QLabel,"dateend");
+        sets = self.dialog.findChild(QPushButton,"ok");
+        sete = self.dialog.findChild(QPushButton,"okend");
+        canc = self.dialog.findChild(QPushButton,"cancel");
+        
         self.dialog.exec();
     def additemtolist(self):
         medname = "'killyourself";
@@ -266,7 +368,13 @@ class userclientgui(QMainWindow):
         self.thur2.takeItem(self.thur2.count()-1);
         self.fri2.takeItem(self.fri2.count()-1);
         self.sat2.takeItem(self.sat2.count()-1);
-        self.sun2.takeItem(self.sun2.count()-1);    
+        self.sun2.takeItem(self.sun2.count()-1);
+    def copytexttoclip(self):
+        pyperclip.copy(self.contactlist.currentItem().text());
+        print("text copied");
+    def selectFile(self):
+        self.lineEdit.setText(QFileDialog.getOpenFileName())
+        
 class GUIobserver:
     def __init__(self, **kwargs):             
         self.guiuser = userclientgui()
