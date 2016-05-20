@@ -10,24 +10,27 @@ class Appointment:
         self.date = datetime.datetime.now        
         
     def get_date(self):
-        row = Models.Appointment.select().where(appointment_ID == self.appointment_ID).get()
+        row = Models.Appointment.select().where(Models.Appointment.appointment_ID == self.appointment_ID).get()
         return row.date.strftime('%A %B %d, %Y %I:%M%p')
 
     def get_patient(self):
-        row = Models.Appointment.select(Appointment, Patient).join(Patient).where(appointment_ID == self.appointment_ID).get()
+        row = Models.Appointment.select(Appointment, Patient).join(Patient).where(Models.Appointment.appointment_ID == self.appointment_ID).get()
         return row.patient_ID_fk.name
 
     def get_personnel(self):
-        row = Models.Appointment.select(Appointment, Personnel).join(Personnel).where(appointment_ID == self.appointment_ID).get()
+        row = Models.Appointment.select(Appointment, Personnel).join(Personnel).where(Models.Appointment.appointment_ID == self.appointment_ID).get()
         return row.personnel_ID_fk.name
 
     def get_service_charge(self):
-        row = Models.Appointment.select().where(appointment_ID == self.appointment_ID).get()
+        row = Models.Appointment.select().where(Models.Appointment.appointment_ID == self.appointment_ID).get()
         return row.service_charge
 
     def get_lab_result(self):
-        row = Models.Appointment.select().where(appointment_ID == self.appointment_ID).get()
+        row = Models.Appointment.select().where(Models.Appointment.appointment_ID == self.appointment_ID).get()
         return row.lab_result
+
+    def get_appt_lst(self, patient_ID):
+        return [appt_lst for appt_lst in Models.Appointment.select().where(Models.Appointment.patient_ID_fk == patient_ID)]
 
 
     @classmethod
