@@ -1,5 +1,5 @@
 import datetime
-import Models
+import Models_2 as Models
 
 class Appointment:
     def __init__(self, appointment_ID):
@@ -10,29 +10,31 @@ class Appointment:
         self.date = datetime.datetime.now        
         
     def get_date(self):
-        row = Models.Appointment.select().where(appointment_ID == self.appointment_ID).get()
+        row = Models.Appointment.select().where(Models.Appointment.appointment_ID == self.appointment_ID).get()
         return row.date.strftime('%A %B %d, %Y %I:%M%p')
 
     def get_patient(self):
-        row = Models.Appointment.select(Appointment, Patient).join(Patient).where(appointment_ID == self.appointment_ID).get()
+        row = Models.Appointment.select(Appointment, Patient).join(Patient).where(Models.Appointment.appointment_ID == self.appointment_ID).get()
         return row.patient_ID_fk.name
 
     def get_personnel(self):
-        row = Models.Appointment.select(Appointment, Personnel).join(Personnel).where(appointment_ID == self.appointment_ID).get()
+        row = Models.Appointment.select(Appointment, Personnel).join(Personnel).where(Models.Appointment.appointment_ID == self.appointment_ID).get()
         return row.personnel_ID_fk.name
 
     def get_service_charge(self):
-        row = Models.Appointment.select().where(appointment_ID == self.appointment_ID).get()
+        row = Models.Appointment.select().where(Models.Appointment.appointment_ID == self.appointment_ID).get()
         return row.service_charge
 
     def get_lab_result(self):
-        row = Models.Appointment.select().where(appointment_ID == self.appointment_ID).get()
+        row = Models.Appointment.select().where(Models.Appointment.appointment_ID == self.appointment_ID).get()
         return row.lab_result
 
 
+
+
     @classmethod
-    def create(cls, appointment_ID, date, patient_ID, personnel_ID, prescription_ID, service_charge,lab_result):
-        Models.Appointment.add(appointment_ID, date, patient_ID, personnel_ID, prescription_ID, service_charge,lab_result)
+    def create(cls, appointment_ID, date, patient_ID, personnel_ID, prescription_ID, service_charge,result):
+        Models.Appointment.add(appointment_ID, date, patient_ID, personnel_ID, prescription_ID, service_charge,result)
 
     @classmethod
     def delete(cls, appointment_ID):

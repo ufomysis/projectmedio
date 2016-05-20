@@ -30,6 +30,7 @@
     <Compile Include="MedicineClass.py" />
     <Compile Include="Models.py" />
     <Compile Include="Models_2.py" />
+    <Compile Include="Patient.py" />
     <Compile Include="Patient_2.py" />
     <Compile Include="PersonelClass.py" />
     <Compile Include="Personnel.py" />

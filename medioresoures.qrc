@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="project medio">
+    <file>bgw.png</file>
     <file>descheader.png</file>
     <file>dateheader.png</file>
     <file>nameheader.png</file>

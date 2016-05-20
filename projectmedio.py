@@ -1,20 +1,21 @@
 import sys
 import pyperclip
 import inspect
-import Patient_2
-import Models_2
+import Patient
+import Models_2 
 from PySide.QtCore import*
 from PySide.QtGui import*
 from PySide.QtUiTools import*
 
 class userclientgui(QMainWindow):
     def __init__(self):
-        
+
+        self.pat = Patient.Patient("AS")
         QMainWindow.__init__(self,None)
         self.dialogloader = QUiLoader();
         self.imagelogo = QPixmap("medio login.png");
         self.loader = QUiLoader();
-        form = self.loader.load("C:/Users/por_n/Documents/SEP project UI/loginregistered.ui",self);
+        form = self.loader.load("loginregistered.ui",self);
         self.setCentralWidget(form);
         self.background = form.findChild(QLabel,"label") ;
         self.image = QPixmap("bgb.png");
@@ -29,7 +30,7 @@ class userclientgui(QMainWindow):
        
     
     def tologinscreen(self):
-        form2 = self.loader.load("C:/Users/por_n/Documents/SEP project UI/log in mock up ui.ui",self);
+        form2 = self.loader.load("log in mock up ui.ui",self);
         self.setCentralWidget(form2);
         self.background = form2.findChild(QLabel,"background");
         self.acclevel = form2.findChild(QComboBox,"acclevel");
@@ -57,7 +58,7 @@ class userclientgui(QMainWindow):
    
     def backtofront(self):
 
-        form = self.loader.load("C:/Users/por_n/Documents/SEP project UI/loginregistered.ui",self);
+        form = self.loader.load("loginregistered.ui",self);
         self.setCentralWidget(form);
         self.background = form.findChild(QLabel,"label") ;
         self.image = QPixmap("bgb.png");
@@ -69,7 +70,7 @@ class userclientgui(QMainWindow):
     
     def backtomainmenu(self):
         self.timer.stop();
-        form3 = self.loader.load("C:/Users/por_n/Documents/SEP project UI/mainmenu.ui",self);
+        form3 = self.loader.load("mainmenu.ui",self);
         self.setCentralWidget(form3);
         self.background = form3.findChild(QLabel,"background") ;
         self.image = QPixmap("Mainmenubg.png");
@@ -105,7 +106,7 @@ class userclientgui(QMainWindow):
         '''seacrh for inputusername in db then geteverything 
             self.patient.setName(name) and go on'''
         if(inputusername == testuserkey and inputpassword == testpasskey and self.acclevel.currentText() == "Patient"):
-            form3 = self.loader.load("C:/Users/por_n/Documents/SEP project UI/mainmenu.ui",self);
+            form3 = self.loader.load("mainmenu.ui",self);
             self.setCentralWidget(form3);
             self.background = form3.findChild(QLabel,"background") ;
             self.image = QPixmap("Mainmenubg.png");
@@ -129,7 +130,7 @@ class userclientgui(QMainWindow):
             print("wrong username, password or access level");
         
     def toappointment1(self):
-        form3 = self.loader.load("C:/Users/por_n/Documents/SEP project UI/appointmentscreen.ui",self);
+        form3 = self.loader.load("appointmentscreen.ui",self);
         self.setCentralWidget(form3);
         self.background = form3.findChild(QLabel,"background");
         self.orth = form3.findChild(QPushButton,"Ortho");
@@ -193,7 +194,7 @@ class userclientgui(QMainWindow):
         self.text = self.time.toString("hh:mm");
         self.clocknow.display(self.text);
     def tomedschedulemonth(self):
-        form4 = self.loader.load("C:/Users/por_n/Documents/SEP project UI/medicineschedulescreen.ui",self);
+        form4 = self.loader.load("medicineschedulescreen.ui",self);
         self.setCentralWidget(form4);
         self.background = form4.findChild(QLabel,"background");
         prof = form4.findChild(QLabel,"userpic");
@@ -226,7 +227,7 @@ class userclientgui(QMainWindow):
         self.timer.timeout.connect(self.showtime)
         self.timer.start(1000);
     def tomedscheduleweek(self):
-        form4 = self.loader.load("C:/Users/por_n/Documents/SEP project UI/medicinescheduleweekview.ui",self);
+        form4 = self.loader.load("medicinescheduleweekview.ui",self);
         self.setCentralWidget(form4);
         self.background = form4.findChild(QLabel,"background");
         addmed = form4.findChild(QPushButton,"add");
@@ -283,7 +284,7 @@ class userclientgui(QMainWindow):
         self.timer.start(1000);
     def tocontactlist(self):
 
-        form5 = self.loader.load("C:/Users/por_n/Documents/SEP project UI/contactsscreen.ui",self);
+        form5 = self.loader.load("contactsscreen.ui",self);
         self.setCentralWidget(form5);
         self.background = form5.findChild(QLabel,"background");
         self.image = QPixmap("bgb.png");
@@ -301,7 +302,8 @@ class userclientgui(QMainWindow):
         back.clicked.connect(self.backtomainmenu); 
         copybutton.clicked.connect(self.copytexttoclip);
     def tohistory(self):
-        form6 = self.loader.load("C:/Users/por_n/Documents/SEP project UI/historyscreen.ui",self);
+        
+        form6 = self.loader.load("historyscreen.ui",self);
         self.setCentralWidget(form6);
         self.background = form6.findChild(QLabel,"background");
         self.image = QPixmap("bgb.png");
@@ -328,10 +330,21 @@ class userclientgui(QMainWindow):
 
         self.timer = QTimer();
         self.timer.timeout.connect(self.showtime)
+        self.timer.timeout.connect(self.updatehistory)
         self.timer.start(1000);
+    def updatehistory(self):
+        self.namel.clear();
+        self.datel.clear();
+        self.totall.clear();
+        self.pat.get_patient_ID()
+        list = self.pat.get_appt_lst(self.pat.get_patient_ID())
+        for l in list:
+            self.namel.addItem(l.get_personnel());
+            self.datel.addItem(l.get_date());
+            self.totall.addItem(str(l.get_service_charge()));
     def tosettingscreen(self):
         
-        self.finalform = self.loader.load("C:/Users/por_n/Documents/SEP project UI/settings.ui",self);
+        self.finalform = self.loader.load("settings.ui",self);
         self.setCentralWidget(self.finalform);
         self.background = self.finalform.findChild(QLabel,"background");
         self.image = QPixmap("bgb.png");
@@ -360,7 +373,7 @@ class userclientgui(QMainWindow):
         self.timer.timeout.connect(self.showtime)
         self.timer.start(1000);
     def popupinsert(self):
-        self.dialog = self.dialogloader.load("C:/Users/por_n/Documents/SEP project UI/popupdialogadd.ui",self);
+        self.dialog = self.dialogloader.load("popupdialogadd.ui",self);
         self.medbox = self.dialog.findChild(QLineEdit,"mednameedit");
         self.timebox = self.dialog.findChild(QLineEdit,"dateedit");
         atl = self.dialog.findChild(QPushButton,"add");
@@ -376,7 +389,7 @@ class userclientgui(QMainWindow):
             
         self.dialog.exec();
         '''def popupchoosedate(self):
-        self.dialog = self.dialogloader.load("C:/Users/por_n/Documents/SEP project UI/popupchoosedate.ui",self);
+        self.dialog = self.dialogloader.load("popupchoosedate.ui",self);
         self.backgroundd = self.dialog.findChild(QLabel,"bgd");
         self.image2 = QPixmap("bgd.png");
         self.backgroundd.setPixmap(self.image2);
@@ -391,7 +404,7 @@ class userclientgui(QMainWindow):
         
         self.dialog.exec();'''
     def popuprequestdoctor1(self):
-        self.dialog = self.dialogloader.load("C:/Users/por_n/Documents/SEP project UI/popuprequestappointment.ui",self);
+        self.dialog = self.dialogloader.load("popuprequestappointment.ui",self);
         self.backgroundd = self.dialog.findChild(QLabel,"bgd");
         self.image2 = QPixmap("bgd.png");
         self.backgroundd.setPixmap(self.image2);
@@ -401,11 +414,11 @@ class userclientgui(QMainWindow):
         req = self.dialog.findChild(QPushButton,"request");
         speclab = self.dialog.findChild(QLabel,"spec");
         speced = self.dialog.findChild(QPlainTextDocumentLayout,"specedit");
-
+        req.clicked.connect(self.dialog.close);
         print(self.orth.accessibleName());
         self.dialog.exec();
     def popuprequestdoctor2(self):
-        self.dialog = self.dialogloader.load("C:/Users/por_n/Documents/SEP project UI/popuprequestappointment.ui",self);
+        self.dialog = self.dialogloader.load("popuprequestappointment.ui",self);
         self.backgroundd = self.dialog.findChild(QLabel,"bgd");
         self.image2 = QPixmap("bgd.png");
         self.backgroundd.setPixmap(self.image2);
@@ -415,11 +428,11 @@ class userclientgui(QMainWindow):
         req = self.dialog.findChild(QPushButton,"request");
         speclab = self.dialog.findChild(QLabel,"spec");
         speced = self.dialog.findChild(QPlainTextDocumentLayout,"specedit");
-
+        req.clicked.connect(self.dialog.close);
         print(self.gastro.accessibleName());
         self.dialog.exec();
     def popuprequestdoctor3(self):
-        self.dialog = self.dialogloader.load("C:/Users/por_n/Documents/SEP project UI/popuprequestappointment.ui",self);
+        self.dialog = self.dialogloader.load("popuprequestappointment.ui",self);
         self.backgroundd = self.dialog.findChild(QLabel,"bgd");
         self.image2 = QPixmap("bgd.png");
         self.backgroundd.setPixmap(self.image2);
@@ -429,11 +442,11 @@ class userclientgui(QMainWindow):
         req = self.dialog.findChild(QPushButton,"request");
         speclab = self.dialog.findChild(QLabel,"spec");
         speced = self.dialog.findChild(QPlainTextDocumentLayout,"specedit");
-
+        req.clicked.connect(self.dialog.close);
         print(self.emer.accessibleName());
         self.dialog.exec();
     def popuprequestdoctor4(self):
-        self.dialog = self.dialogloader.load("C:/Users/por_n/Documents/SEP project UI/popuprequestappointment.ui",self);
+        self.dialog = self.dialogloader.load("popuprequestappointment.ui",self);
         self.backgroundd = self.dialog.findChild(QLabel,"bgd");
         self.image2 = QPixmap("bgd.png");
         self.backgroundd.setPixmap(self.image2);
@@ -443,11 +456,11 @@ class userclientgui(QMainWindow):
         req = self.dialog.findChild(QPushButton,"request");
         speclab = self.dialog.findChild(QLabel,"spec");
         speced = self.dialog.findChild(QPlainTextDocumentLayout,"specedit");
-
+        req.clicked.connect(self.dialog.close);
         print(self.dermato.accessibleName());
         self.dialog.exec();
     def popuprequestdoctor5(self):
-        self.dialog = self.dialogloader.load("C:/Users/por_n/Documents/SEP project UI/popuprequestappointment.ui",self);
+        self.dialog = self.dialogloader.load("popuprequestappointment.ui",self);
         self.backgroundd = self.dialog.findChild(QLabel,"bgd");
         self.image2 = QPixmap("bgd.png");
         self.backgroundd.setPixmap(self.image2);
@@ -457,11 +470,11 @@ class userclientgui(QMainWindow):
         req = self.dialog.findChild(QPushButton,"request");
         speclab = self.dialog.findChild(QLabel,"spec");
         speced = self.dialog.findChild(QPlainTextDocumentLayout,"specedit");
-
+        req.clicked.connect(self.dialog.close);
         print(self.pedia.accessibleName());
         self.dialog.exec();
     def popuprequestdoctor6(self):
-        self.dialog = self.dialogloader.load("C:/Users/por_n/Documents/SEP project UI/popuprequestappointment.ui",self);
+        self.dialog = self.dialogloader.load("popuprequestappointment.ui",self);
         self.backgroundd = self.dialog.findChild(QLabel,"bgd");
         self.image2 = QPixmap("bgd.png");
         self.backgroundd.setPixmap(self.image2);
@@ -471,11 +484,11 @@ class userclientgui(QMainWindow):
         req = self.dialog.findChild(QPushButton,"request");
         speclab = self.dialog.findChild(QLabel,"spec");
         speced = self.dialog.findChild(QPlainTextDocumentLayout,"specedit");
-
+        req.clicked.connect(self.dialog.close);
         print(self.outpat.accessibleName());
         self.dialog.exec();
     def popuprequestdoctor7(self):
-        self.dialog = self.dialogloader.load("C:/Users/por_n/Documents/SEP project UI/popuprequestappointment.ui",self);
+        self.dialog = self.dialogloader.load("popuprequestappointment.ui",self);
         self.backgroundd = self.dialog.findChild(QLabel,"bgd");
         self.image2 = QPixmap("bgd.png");
         self.backgroundd.setPixmap(self.image2);
@@ -485,11 +498,11 @@ class userclientgui(QMainWindow):
         req = self.dialog.findChild(QPushButton,"request");
         speclab = self.dialog.findChild(QLabel,"spec");
         speced = self.dialog.findChild(QPlainTextDocumentLayout,"specedit");
-
+        req.clicked.connect(self.dialog.close);
         print(self.cardi.accessibleName());
         self.dialog.exec();
     def popuprequestdoctor8(self):
-        self.dialog = self.dialogloader.load("C:/Users/por_n/Documents/SEP project UI/popuprequestappointment.ui",self);
+        self.dialog = self.dialogloader.load("popuprequestappointment.ui",self);
         self.backgroundd = self.dialog.findChild(QLabel,"bgd");
         self.image2 = QPixmap("bgd.png");
         self.backgroundd.setPixmap(self.image2);
@@ -499,11 +512,11 @@ class userclientgui(QMainWindow):
         req = self.dialog.findChild(QPushButton,"request");
         speclab = self.dialog.findChild(QLabel,"spec");
         speced = self.dialog.findChild(QPlainTextDocumentLayout,"specedit");
-
+        req.clicked.connect(self.dialog.close);
         print(self.neurology.accessibleName());
         self.dialog.exec();
     def popuprequestdoctor9(self):
-        self.dialog = self.dialogloader.load("C:/Users/por_n/Documents/SEP project UI/popuprequestappointment.ui",self);
+        self.dialog = self.dialogloader.load("popuprequestappointment.ui",self);
         self.backgroundd = self.dialog.findChild(QLabel,"bgd");
         self.image2 = QPixmap("bgd.png");
         self.backgroundd.setPixmap(self.image2);
@@ -513,7 +526,7 @@ class userclientgui(QMainWindow):
         req = self.dialog.findChild(QPushButton,"request");
         speclab = self.dialog.findChild(QLabel,"spec");
         speced = self.dialog.findChild(QPlainTextDocumentLayout,"specedit");
-
+        req.clicked.connect(self.dialog.close);
         print(self.rad.accessibleName());
         self.dialog.exec();
     def additemtolist(self):
@@ -567,7 +580,7 @@ class receptionistclientgui(QMainWindow):
         self.dialogloader = QUiLoader();
         self.imagelogo = QPixmap("medio login.png");
         self.loader = QUiLoader();
-        form = self.loader.load("C:/Users/por_n/Documents/SEP project UI/loginregistered.ui",self);
+        form = self.loader.load("loginregistered.ui",self);
         self.setCentralWidget(form);
         self.background = form.findChild(QLabel,"label") ;
         self.image = QPixmap("bgb.png");
@@ -584,7 +597,7 @@ def main():
     
     app = QApplication(sys.argv)
     observer1 = PatientGUIobserver()
-    Models.initialize();
+    Models_2.initialize();
     return app.exec_()
 if __name__=="__main__":
     sys.exit(main())

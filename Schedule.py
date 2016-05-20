@@ -1,4 +1,4 @@
-import Models
+import Models_2 as Models
 import Appointment
 
 class Schedule:

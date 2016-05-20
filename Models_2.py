@@ -2,7 +2,8 @@ import datetime
 import Appointment as appt
 import Medicine as medic
 from peewee import *
-import PersonelClass as person
+import Personnel as person
+import Patient as pat
 DATABASE = SqliteDatabase('hospital.db')
 
 class Personnel(Model):
@@ -45,21 +46,24 @@ class Patient(Model):
     date_of_birth = DateTimeField()
     phone_number = TextField()
     age = IntegerField()
-
+    user_id = CharField()
+    user_pass = CharField()
     class Meta:
         database  = DATABASE
         order_by = ('-patient_ID',)  
 
 
     @classmethod
-    def add(cls, patient_ID, name, date_of_birth, phone_number, age):
+    def add(cls, patient_ID, name, date_of_birth, phone_number, age,user_id,user_pass):
         try:            
             cls.create(
                     patient_ID=patient_ID,
                     name=name,
                     date_of_birth=date_of_birth,
                     phone_number=phone_number,
-                    age = age)
+                    age = age,
+                    user_id = user_id,
+                    user_pass = user_pass)
         except IntegrityError:            
             patient_tmp = Patient.get(patient_ID=patient_ID)
             patient_tmp.name = name
@@ -137,8 +141,8 @@ class Prescription(Model):
 class Appointment(Model):
     appointment_ID = CharField(unique=True)
     date = DateTimeField(default=datetime.datetime.now)
-    patient_ID_fk = ForeignKeyField(Patient, related_name='appointed')
-    personnel_ID_fk = ForeignKeyField(Personnel, related_name='supervise')    
+    patient_ID_fk = ForeignKeyField(Patient)
+    personnel_ID_fk = ForeignKeyField(Personnel)    
     prescription_ID_fk = ForeignKeyField(Prescription)    
     service_charge = FloatField(default=0)
     lab_result = TextField()
@@ -172,7 +176,25 @@ class Appointment(Model):
     def delete(cls, appointment):
         appointment.delete_instance()
 
+    def get_date(self):
+        row = Appointment.select().where(Appointment.appointment_ID == self.appointment_ID).get()
+        return row.date.strftime('%A %B %d, %Y %I:%M%p')
 
+    def get_patient(self):
+        row = Appointment.select(Appointment, Patient).join(Patient).where(Appointment.appointment_ID == self.appointment_ID).get()
+        return row.patient_ID_fk.name
+
+    def get_personnel(self):
+        row = Appointment.select(Appointment, Personnel).join(Personnel).where(Appointment.appointment_ID == self.appointment_ID).get()
+        return row.personnel_ID_fk.name
+
+    def get_service_charge(self):
+        row = Appointment.select().where(Appointment.appointment_ID == self.appointment_ID).get()
+        return row.service_charge
+
+    def get_lab_result(self):
+        row = Appointment.select().where(Appointment.appointment_ID == self.appointment_ID).get()
+        return row.lab_result
 class Room(Model):
     room_num = CharField()
     room_type = CharField()
@@ -236,11 +258,12 @@ def initialize():
     DATABASE.create_tables([Personnel,Patient,Medicine,Prescription,Appointment,Room, Roomuse], safe=True)
     DATABASE.close()
     app = appt.Appointment("ap0001")
-    med = medic.Medicine("123")
-
+    pats = pat.Patient("AS")
     date = datetime.datetime(2016,1,12,4,50,30,100,None)
     app.create("1234",date,1,1,1,"1000","DIE")
-    
+    pats.create(1,"Por",date,"0818188216",10,"AS","AS")
+    pers = person.Personnel(1)
+    pers.create(1,"PO","a","b","c")
     #med.create("1234","lol",10000)
     #Appointment.create("5678",date,"pat0002","doc0001","pre0002","1000","SAVIOR")
 

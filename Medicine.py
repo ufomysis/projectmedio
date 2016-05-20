@@ -1,4 +1,4 @@
-import Models
+import Models_2 as Models
 
 
 class Medicine:

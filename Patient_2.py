@@ -6,8 +6,9 @@ class Patient:
         self.patient_ID = patient_ID
         self.name = 'lol'
         self.date_of_birth = datetime.datetime.now
-        self.phone_number = ''
-        self.age = 0
+        self.phone_number = '0818188216'
+        self.age = 10
+        self.ApptList = []
 
     def get_name(self):
         row = Models.Patient.select().where(patient_ID = self.patient_ID).get()
